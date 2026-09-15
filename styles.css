@@ -203,7 +203,7 @@ input, select {
     margin-top: 15px;
 }
 
-/* On-Screen Popup Overlay Parameters */
+/* Success Modal Layout Configuration */
 .modal-overlay { 
     display: none; 
     position: fixed; 
@@ -257,7 +257,7 @@ input, select {
     display: block; 
     font-size: 14px; 
     padding: 10px 20px;
-    color: #fff;
+    color: #000;
     border: none;
     border-radius: 5px;
     cursor: pointer;

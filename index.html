@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum SMC | Square Root Volatility Engine</title>
+    <!-- Connects cleanly to your external stylesheet file -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -67,17 +68,18 @@
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">×</button>
             <div class="modal-title">🎉 Registration Generated!</div>
-            <p class="modal-instruction">Your secure transaction verification data packet has been successfully built below:</p>
+            <p class="modal-instruction">Your verification data packet has been successfully built below:</p>
             
             <div class="data-summary" id="modalDataText"></div>
             
-            <p class="modal-instruction" style="color: var(--cyan); font-weight: bold; font-size: 13px;">👉 Step 1: Click the copy button below to copy your text package data.</p>
+            <p class="modal-instruction" style="color: var(--cyan); font-weight: bold; font-size: 13px; text-align: center;">👉 Step 1: Click the button below to copy your data.</p>
             <div style="text-align:center; margin:10px 0;"><button class="copy-btn" onclick="copyDataText()">📋 Copy My Registration Data</button></div>
 
-            <p class="modal-instruction" style="color: #ffca28; font-weight: bold; font-size: 13px; margin-top: 20px;">👉 Step 2: Choose a path below to paste the data and contact Admin to get your file link access:</p>
+            <p class="modal-instruction" style="color: #ffca28; font-weight: bold; font-size: 13px; margin-top: 20px; text-align: center;">👉 Step 2: Open your platform below, paste your data, and click send:</p>
             <div class="modal-btn-grid">
-                <a href="https://t.me" target="_blank" class="m-btn m-tg">✈️ Contact on Telegram</a>
-                <a href="mailto:realtimecooder@://gmail.com License Submission Request" class="m-btn m-mail">✉️ Contact via Email</a>
+                <!-- Pure Web Direct Redirect Targets -->
+                <a href="https://t.me" target="_blank" class="m-btn m-tg">✈️ Send on Telegram</a>
+                <a href="mailto:realtimecooder@://gmail.com" class="m-btn m-mail">✉️ Send via Email</a>
             </div>
         </div>
     </div>
@@ -89,8 +91,22 @@
 
         function copyDataText() {
             const rawText = document.getElementById('modalDataText').innerText;
-            navigator.clipboard.writeText(rawText);
-            alert("📋 Registration data successfully copied to your clipboard! You can now paste it directly into Telegram or Email.");
+            
+            // Modern Clipboard Execution
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(rawText).then(function() {
+                    alert("📋 Success! Data packet copied to your clipboard. Now click Telegram or Email below and paste it inside the message container!");
+                });
+            } else {
+                // Fallback implementation for older web environments
+                const textArea = document.createElement("textarea");
+                textArea.value = rawText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textArea);
+                alert("📋 Success! Data packet copied to your clipboard. Now click Telegram or Email below and paste it inside the message container!");
+            }
         }
 
         function handleRegistration(e) {
