@@ -21,6 +21,7 @@
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; color: #b0c4de; font-size: 14px; }
         input, select { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border); background: #06090f; color: #fff; box-sizing: border-box; }
+        .error-msg { color: #ff3333; font-size: 13px; margin-top: 5px; display: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -57,23 +58,65 @@
 
             <p style="font-size:14px; color:#8fa0b5; text-align:center; margin-top:20px;">Step 2: Submit verification parameters:</p>
 
-            <form onsubmit="sendEmail(event)">
-                <div class="form-group"><label>Full Name</label><input type="text" id="name" mountaineer required></div>
+            <form onsubmit="validateAndSendEmail(event)">
+                <div class="form-group"><label>Full Name</label><input type="text" id="name" required></div>
                 <div class="form-group"><label>Delivery Email</label><input type="email" id="email" required></div>
                 <div class="form-group"><label>Platform License</label><select id="platform"><option>TradingView (Pine Script)</option><option>MetaTrader 5 (.ex5)</option></select></div>
-                <div class="form-group"><label>Crypto Network Used</label><select id="network"><option>USDT - TRC20</option><option>USDT - BEP20</option></select></div>
+                <div class="form-group"><label>Crypto Network Used</label><select id="network" onchange="clearError()"><option value="TRC20">USDT - TRC20</option><option value="BEP20">USDT - BEP20</option></select></div>
                 <div class="form-group"><label>TradingView Username</label><input type="text" id="username" placeholder="Optional"></div>
-                <div class="form-group"><label>Transaction Hash ID (TxID)</label><input type="text" id="txid" required></div>
+                <div class="form-group">
+                    <label>Transaction Hash ID (TxID)</label>
+                    <input type="text" id="txid" required placeholder="Paste your block hash reference string" oninput="clearError()">
+                    <div id="txid-error" class="error-msg">⚠️ Invalid Hash Format Detected. Please verify your transaction hash string.</div>
+                </div>
                 <button type="submit" class="btn" style="width:100%;">Submit Request</button>
             </form>
         </div>
     </div>
 
     <script>
-        function sendEmail(e) {
+        function clearError() {
+            document.getElementById('txid-error').style.display = 'none';
+        }
+
+        function validateAndSendEmail(e) {
             e.preventDefault();
-            const body = `Name: ${document.getElementById('name').value}%0DEmail: ${document.getElementById('email').value}%0DPlatform: ${document.getElementById('platform').value}%0DNetwork: ${document.getElementById('network').value}%0DUser: ${document.getElementById('username').value}%0DTxID: ${document.getElementById('txid').value}`;
-            window.location.href = `mailto:realtimecooder@://gmail.com Registration&body=${body}`;
+            
+            const network = document.getElementById('network').value;
+            const txid = document.getElementById('txid').value.trim();
+            const errorElement = document.getElementById('txid-error');
+            
+            // Clean up regex validation check structures
+            const trc20Regex = /^[a-fA-F0-9]{64}$/; 
+            const bep20Regex = /^0x[a-fA-F0-9]{64}$/;
+
+            let isValid = false;
+
+            if (network === "TRC20") {
+                if (trc20Regex.test(txid)) {
+                    isValid = true;
+                } else {
+                    errorElement.innerText = "⚠️ Invalid TRC20 TxID. Must be exactly 64 hexadecimal characters (no 0x at the start).";
+                    errorElement.style.display = "block";
+                }
+            } else if (network === "BEP20") {
+                if (bep20Regex.test(txid)) {
+                    isValid = true;
+                } else {
+                    errorElement.innerText = "⚠️ Invalid BEP20 TxID. Must start with '0x' followed by 64 hexadecimal characters.";
+                    errorElement.style.display = "block";
+                }
+            }
+
+            if (isValid) {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const platform = document.getElementById('platform').value;
+                const username = document.getElementById('username').value || "None";
+                
+                const body = `Name: ${name}%0DEmail: ${email}%0DPlatform: ${platform}%0DNetwork: USDT-${network}%0DUser: ${username}%0DTxID: ${txid}`;
+                window.location.href = `mailto:realtimecooder@://gmail.com Registration - ${name}&body=${body}`;
+            }
         }
     </script>
 </body>
