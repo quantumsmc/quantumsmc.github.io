@@ -1,7 +1,3 @@
-/* ==========================================================================
-   🎨 QUANTUM SMC CENTRAL DESIGN HOOKS
-   ========================================================================== */
-
 :root { 
     --bg: #06090f; 
     --txt: #f0f4f8; 
@@ -191,25 +187,6 @@ input, select {
     box-sizing: border-box; 
 }
 
-.error-msg { 
-    color: #ff3333; 
-    font-size: 13px; 
-    margin-top: 5px; 
-    display: none; 
-    font-weight: bold; 
-}
-
-.notice-box { 
-    background: rgba(157, 78, 221, 0.1); 
-    border: 1px solid var(--purple); 
-    border-radius: 5px; 
-    padding: 10px; 
-    font-size: 13px; 
-    color: #d0c0f0; 
-    margin-top: 15px; 
-    line-height: 1.4; 
-}
-
 .submit-btn {
     background: linear-gradient(90deg, var(--cyan), var(--purple)); 
     color: #000; 
@@ -224,4 +201,98 @@ input, select {
     cursor: pointer; 
     box-sizing: border-box;
     margin-top: 15px;
+}
+
+/* Success Modal Layout Configuration */
+.modal-overlay { 
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.85); 
+    z-index: 1000; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
+    box-sizing: border-box; 
+}
+
+.modal-content { 
+    background: #0d131f; 
+    border: 2px solid var(--cyan); 
+    border-radius: 12px; 
+    padding: 30px; 
+    max-width: 550px; 
+    width: 100%; 
+    text-align: left; 
+    box-sizing: border-box; 
+    position: relative; 
+}
+
+.modal-instruction {
+    font-size: 14px; 
+    color: #8fa0b5; 
+    text-align: center; 
+    margin: 10px 0 20px 0;
+}
+
+.data-summary { 
+    background: #06090f; 
+    border: 1px solid var(--border); 
+    padding: 15px; 
+    border-radius: 6px; 
+    font-family: monospace; 
+    white-space: pre-wrap; 
+    font-size: 13px; 
+    color: #fff; 
+    margin: 15px 0; 
+    word-break: break-all; 
+}
+
+.copy-btn {
+    background: #242f3d; 
+    display: inline-block; 
+    font-size: 12px; 
+    padding: 6px 12px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-btn-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; 
+    margin-top: 20px; 
+}
+
+.m-btn { 
+    padding: 12px; 
+    border-radius: 6px; 
+    font-weight: bold; 
+    text-decoration: none; 
+    text-align: center; 
+    font-size: 14px; 
+    cursor: pointer; 
+    border: none; 
+    display: block; 
+    color: #fff; 
+}
+
+.m-tg { background: #229ED9; }
+.m-tg:hover { background: #1c82b3; }
+.m-mail { background: linear-gradient(90deg, var(--cyan), var(--purple)); color: #000; }
+
+.close-modal { 
+    position: absolute; 
+    top: 15px; 
+    right: 15px; 
+    background: none; 
+    border: none; 
+    color: #8fa0b5; 
+    font-size: 20px; 
+    cursor: pointer; 
 }
