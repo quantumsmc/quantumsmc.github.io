@@ -25,6 +25,7 @@
         label { display: block; margin-bottom: 5px; color: #b0c4de; font-size: 14px; }
         input, select { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border); background: #06090f; color: #fff; box-sizing: border-box; }
         .error-msg { color: #ff3333; font-size: 13px; margin-top: 5px; display: none; font-weight: bold; }
+        .notice-box { background: rgba(157, 78, 221, 0.1); border: 1px solid var(--purple); border-radius: 5px; padding: 10px; font-size: 13px; color: #d0c0f0; margin-top: 15px; line-height: 1.4; }
     </style>
 </head>
 <body>
@@ -78,12 +79,18 @@
                 <div class="form-group"><label>Platform License</label><select id="platform"><option>TradingView (Pine Script)</option><option>MetaTrader 5 (.ex5)</option></select></div>
                 <div class="form-group"><label>Crypto Network Used</label><select id="network" onchange="clearError()"><option value="TRC20">USDT - TRC20</option><option value="BEP20">USDT - BEP20</option></select></div>
                 <div class="form-group"><label>TradingView Username</label><input type="text" id="username" placeholder="Optional"></div>
+                
                 <div class="form-group">
                     <label>Transaction Hash ID (TxID)</label>
                     <input type="text" id="txid" required placeholder="Paste your block hash reference string" oninput="clearError()">
                     <div id="txid-error" class="error-msg">⚠️ Invalid Hash Format Detected. Please verify your transaction hash string.</div>
                 </div>
-                <button type="submit" class="btn" style="width:100%;">Submit Request</button>
+                
+                <div class="notice-box">
+                    ℹ️ <b>Note:</b> Clicking submit will instantly format your request details into your default mail window. Please manually attach your payment confirmation screenshot before hitting send!
+                </div>
+
+                <button type="submit" class="btn" style="width:100%; margin-top: 15px;">Submit Request</button>
             </form>
         </div>
     </div>
@@ -109,14 +116,14 @@
                 if (trc20Regex.test(txid)) {
                     isValid = true;
                 } else {
-                    errorElement.innerText = "⚠️ Invalid TRC20 TxID. Must be exactly 64 hexadecimal characters (no 0x at the start).";
+                    errorElement.innerText = "⚠️ Invalid TRC20 TxID. Must be exactly 64 characters.";
                     errorElement.style.display = "block";
                 }
             } else if (network === "BEP20") {
                 if (bep20Regex.test(txid)) {
                     isValid = true;
                 } else {
-                    errorElement.innerText = "⚠️ Invalid BEP20 TxID. Must start with '0x' followed by 64 hexadecimal characters.";
+                    errorElement.innerText = "⚠️ Invalid BEP20 TxID. Must start with '0x' followed by 64 characters.";
                     errorElement.style.display = "block";
                 }
             }
@@ -127,8 +134,10 @@
                 const platform = document.getElementById('platform').value;
                 const username = document.getElementById('username').value || "None";
                 
-                const body = `Name: ${name}%0DEmail: ${email}%0DPlatform: ${platform}%0DNetwork: USDT-${network}%0DUser: ${username}%0DTxID: ${txid}`;
-                window.location.href = `mailto:realtimecooder@gmail.com Registration - ${name}&body=${body}`;
+                const body = `QUANTUM SMC REGISTRATION DATA%0D%0A-------------------------%0D%0AName: ${name}%0DEmail: ${email}%0DPlatform: ${platform}%0DNetwork: USDT-${network}%0DUser: ${username}%0DTxID: ${txid}%0D%0A-------------------------%0D%0A[Please attach your payment screenshot directly to this email before sending]`;
+                
+                // Pure corrected structural URI link destination setup
+                window.location.href = `mailto:realtimecooder@://gmail.com Registration - ${encodeURIComponent(name)}&body=${body}`;
             }
         }
     </script>
