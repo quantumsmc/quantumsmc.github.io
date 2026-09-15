@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum SMC | Square Root Volatility Engine</title>
-    <!-- Connected to separate stylesheet file -->
+    <!-- Connects to your external stylesheet file safely across any device -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
 
     <div class="container">
         
-        <!-- 🎁 EXCLUSIVE ACTIVE GIVEAWAY PROMO SECTION -->
+        <!-- 🎁 EXCLUSIVE ACTIVE GIVEAWAY PROMO SECTION (RESPONSIVE GRID) -->
         <div class="promo-banner">
             <div class="promo-badge">Limited</div>
             <div class="promo-title">⚠️ First 30 Clients Mega Giveaway Campaign ⚠️</div>
@@ -87,6 +87,7 @@
         </div>
     </div>
 
+    <!-- NATIVE SYSTEM CROSS-PLATFORM OVERLAY CONTAINER -->
     <div class="modal-overlay" id="successModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">×</button>
@@ -117,8 +118,21 @@
 
         function copyDataText() {
             const rawText = document.getElementById('modalDataText').innerText;
-            navigator.clipboard.writeText(rawText);
-            alert("📋 Registration data successfully copied to your clipboard! You can now paste it directly into Telegram or Email.");
+            
+            // Universal clipboard integration for old and new systems
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(rawText).then(function() {
+                    alert("📋 Registration data successfully copied to your clipboard!");
+                });
+            } else {
+                const textArea = document.createElement("textarea");
+                textArea.value = rawText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textArea);
+                alert("📋 Registration data successfully copied to your clipboard!");
+            }
         }
 
         function handleRegistration(e) {

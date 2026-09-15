@@ -16,6 +16,7 @@ body {
     margin: 0; 
     padding: 0; 
     text-align: center; 
+    -webkit-font-smoothing: antialiased;
 }
 
 header { 
@@ -56,7 +57,7 @@ header {
 }
 
 h1 { 
-    font-size: 40px; 
+    font-size: clamp(28px, 5vw, 40px);
     margin-bottom: 10px; 
 }
 
@@ -68,20 +69,22 @@ h1 {
     max-width: 1000px; 
     margin: 0 auto; 
     padding: 20px; 
+    box-sizing: border-box;
 }
 
-/* 🎁 PROMO BANNER CONTAINERS */
+/* 🎁 PROMO BANNER GRAPHICS LAYER */
 .promo-banner {
     background: linear-gradient(135deg, rgba(157, 78, 221, 0.2) 0%, rgba(0, 243, 255, 0.2) 100%);
     border: 2px solid var(--cyan);
     border-radius: 12px;
-    padding: 35px;
+    padding: 35px 20px;
     margin: 30px auto;
     max-width: 900px;
     text-align: center;
     box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .promo-badge {
@@ -100,17 +103,16 @@ h1 {
 }
 
 .promo-title {
-    font-size: 26px;
+    font-size: clamp(18px, 4vw, 26px);
     font-weight: bold;
     color: var(--gold);
     margin-top: 0;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    text-shadow: 0 2px 10px rgba(255, 202, 40, 0.2);
 }
 
 .promo-text {
-    font-size: 16px;
+    font-size: 15px;
     color: #e2ebf5;
     margin: 15px 0;
     line-height: 1.6;
@@ -122,12 +124,11 @@ h1 {
     background: rgba(0, 243, 255, 0.1);
     padding: 2px 8px;
     border-radius: 4px;
-    border: 1px solid rgba(0, 243, 255, 0.2);
 }
 
 .prize-list-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 15px;
     max-width: 600px;
     margin: 25px auto 10px auto;
@@ -145,12 +146,6 @@ h1 {
     margin: 0 0 5px 0;
     color: #fff;
     font-size: 15px;
-}
-
-.prize-item-box p {
-    margin: 0;
-    font-size: 13px;
-    color: #8fa0b5;
 }
 
 .grid { 
@@ -175,10 +170,7 @@ h1 {
     margin: 15px 0; 
 }
 
-.price-sub {
-    font-size: 14px; 
-    color: #8fa0b5;
-}
+.price-sub { font-size: 14px; color: #8fa0b5; }
 
 .btn { 
     background: linear-gradient(90deg, var(--cyan), var(--purple)); 
@@ -199,16 +191,14 @@ h1 {
     background: var(--card); 
     border: 1px solid var(--border); 
     border-radius: 8px; 
-    padding: 30px; 
+    padding: 30px 20px; 
     max-width: 500px; 
     margin: 40px auto; 
     text-align: left; 
+    box-sizing: border-box;
 }
 
-.form-title {
-    text-align: center;
-    margin-top: 0;
-}
+.form-title { text-align: center; margin-top: 0; }
 
 .tg-notice-box {
     background: rgba(34, 158, 217, 0.1); 
@@ -221,17 +211,8 @@ h1 {
     text-align: center;
 }
 
-.tg-inline-link {
-    color: #00f3ff; 
-    font-weight: bold; 
-    text-decoration: none;
-}
-
-.form-step {
-    font-size: 14px; 
-    color: #8fa0b5; 
-    text-align: center;
-}
+.tg-inline-link { color: #00f3ff; font-weight: bold; text-decoration: none; }
+.form-step { font-size: 14px; color: #8fa0b5; text-align: center; }
 
 .wallet-box { 
     background: rgba(0, 243, 255, 0.1); 
@@ -245,50 +226,12 @@ h1 {
     font-size: 14px; 
 }
 
-.bep20-wallet {
-    border-color: #ffca28; 
-    color: #ffca28; 
-    background: rgba(255, 202, 40, 0.05);
-}
+.bep20-wallet { border-color: #ffca28; color: #ffca28; background: rgba(255, 202, 40, 0.05); }
+.form-group { margin-bottom: 15px; }
+label { display: block; margin-bottom: 5px; color: #b0c4de; font-size: 14px; }
+input, select { width: 100%; padding: 12px 10px; border-radius: 5px; border: 1px solid var(--border); background: #06090f; color: #fff; box-sizing: border-box; font-size: 15px; }
 
-.form-group { 
-    margin-bottom: 15px; 
-}
-
-label { 
-    display: block; 
-    margin-bottom: 5px; 
-    color: #b0c4de; 
-    font-size: 14px; 
-}
-
-input, select { 
-    width: 100%; 
-    padding: 10px; 
-    border-radius: 5px; 
-    border: 1px solid var(--border); 
-    background: #06090f; 
-    color: #fff; 
-    box-sizing: border-box; 
-}
-
-.submit-btn {
-    background: linear-gradient(90deg, var(--cyan), var(--purple)); 
-    color: #000; 
-    padding: 12px 25px; 
-    text-decoration: none; 
-    font-weight: bold; 
-    border-radius: 5px; 
-    display: inline-block; 
-    width: 100%; 
-    text-align: center; 
-    border: none; 
-    cursor: pointer; 
-    box-sizing: border-box;
-    margin-top: 15px;
-}
-
-/* Modals layer styles */
+/* Responsive Layout Overlay */
 .modal-overlay { 
     display: none; 
     position: fixed; 
@@ -300,7 +243,7 @@ input, select {
     z-index: 1000; 
     justify-content: center; 
     align-items: center; 
-    padding: 20px; 
+    padding: 15px; 
     box-sizing: border-box; 
 }
 
@@ -308,20 +251,17 @@ input, select {
     background: #0d131f; 
     border: 2px solid var(--cyan); 
     border-radius: 12px; 
-    padding: 30px; 
+    padding: 25px 20px; 
     max-width: 550px; 
     width: 100%; 
     text-align: left; 
     box-sizing: border-box; 
     position: relative; 
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
-.modal-instruction { 
-    font-size: 14px; 
-    color: #8fa0b5; 
-    text-align: center; 
-    margin: 10px 0; 
-}
+.modal-instruction { font-size: 14px; color: #8fa0b5; text-align: center; margin: 10px 0; }
 
 .data-summary { 
     background: #06090f; 
@@ -341,21 +281,22 @@ input, select {
     background: var(--purple); 
     display: block; 
     font-size: 14px; 
-    padding: 10px 20px; 
+    padding: 12px 20px; 
     color: #000; 
     border: none; 
     border-radius: 5px; 
     cursor: pointer; 
     font-weight: bold; 
     margin: 0 auto; 
-    width: 80%; 
+    width: 100%; 
+    max-width: 320px;
     text-align: center; 
 }
 
 .modal-btn-grid { 
     display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 15px; 
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+    gap: 12px; 
     margin-top: 15px; 
 }
 
@@ -373,17 +314,5 @@ input, select {
 }
 
 .m-tg { background: #229ED9; }
-.m-tg:hover { background: #1c82b3; }
 .m-mail { background: #161a23; border: 1px solid var(--border); color: #fff; }
-.m-mail:hover { background: #202633; }
-
-.close-modal { 
-    position: absolute; 
-    top: 15px; 
-    right: 15px; 
-    background: none; 
-    border: none; 
-    color: #8fa0b5; 
-    font-size: 24px; 
-    cursor: pointer; 
-}
+.close-modal { position: absolute; top: 10px; right: 15px; background: none; border: none; color: #8fa0b5; font-size: 28px; cursor: pointer; }
