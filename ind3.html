@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum SMC Engine | Volatility-Filtered Market Structure Automation</title>
+    <style>
+        :root { 
+            --bg: #06090f; 
+            --txt: #f0f4f8; 
+            --cyan: #00f3ff; 
+            --purple: #9d4edd; 
+            --card: #0d131f; 
+            --border: #1a2333; 
+            --gold: #ffca28; 
+            --alert-red: #ff3366; 
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg); 
+            color: var(--txt); 
+            margin: 0; 
+            padding: 0; 
+            text-align: center; 
+            -webkit-font-smoothing: antialiased; 
+        }
+        header { 
+            padding: 20px 5%; 
+            border-bottom: 1px solid var(--border); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-sizing: border-box; 
+        }
+        .logo { 
+            font-weight: bold; 
+            font-size: 22px; 
+            color: var(--cyan); 
+        }
+        .tg-contact { 
+            background: #229ED9; 
+            color: #fff; 
+            text-decoration: none; 
+            padding: 8px 16px; 
+            border-radius: 20px; 
+            font-size: 14px; 
+            font-weight: bold; 
+            display: inline-block; 
+            transition: 0.2s; 
+        }
+        .tg-contact:hover { 
+            background: #1c82b3; 
+            transform: translateY(-1px); 
+        }
+        .hero { 
+            padding: 60px 20px; 
+            background: radial-gradient(circle at top, #111a2e 0%, var(--bg) 70%); 
+        }
+        h1 { 
+            font-size: clamp(28px, 5vw, 40px); 
+            margin-bottom: 10px; 
+        }
+        .cyan-txt { 
+            color: var(--cyan); 
+        }
+        .container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            box-sizing: border-box; 
+        }
+        .chart-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); 
+            gap: 25px; 
+            margin: 30px auto; 
+        }
+        .chart-section { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 20px; 
+            box-sizing: border-box; 
+            text-align: center; 
+        }
+        .chart-title { 
+            font-size: 16px; 
+            font-weight: bold; 
+            color: var(--cyan); 
+            margin-bottom: 15px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+        .chart-link-wrapper { 
+            display: block; 
+            width: 100%; 
+            height: 250px; 
+            overflow: hidden; 
+            border-radius: 6px; 
+            border: 1px solid var(--border); 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6); 
+            position: relative; 
+            cursor: pointer; 
+        }
+        .chart-link-wrapper::after { 
+            content: "🔍 ZOOM VIEW ON THIS PAGE"; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 243, 255, 0.2); 
+            color: #fff; 
+            font-size: 12px; 
+            font-weight: bold; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            opacity: 0; 
+            transition: opacity 0.25s ease; 
+        }
+        .chart-link-wrapper:hover::after { 
+            opacity: 1; 
+        }
+        .chart-img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+            transition: transform 0.3s ease; 
+        }
+        .chart-link-wrapper:hover .chart-img { 
+            transform: scale(1.03); 
+        }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            margin: 40px 0; 
+        }
+        .card { 
+            background: var(--card); 
+            padding: 25px; 
+            border-radius: 8px; 
+            border: 1px solid var(--border); 
+            text-align: left; 
+        }
+        .price { 
+            font-size: 32px; 
+            font-weight: bold; 
+            color: #fff; 
+            margin: 15px 0; 
+        }
+        .price-sub { 
+            font-size: 14px; 
+            color: #8fa0b5; 
+        }
+        .card-desc { 
+            font-size: 14px; 
+            color: #8fa0b5; 
+            margin-bottom: 20px; 
+            line-height: 1.5; 
+        }
+        .btn { 
+            background: linear-gradient(90deg, var(--cyan), var(--purple)); 
+            color: #000; 
+            padding: 12px 25px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 5px; 
+            display: inline-block; 
+            width: 100%; 
+            text-align: center; 
+            border: none; 
+            cursor: pointer; 
+            box-sizing: border-box; 
+        }
+        .form-box { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 8px; 
+            padding: 30px 20px; 
+            max-width: 500px; 
+            margin: 40px auto; 
+            text-align: left; 
+            box-sizing: border-box; 
+        }
+        .form-title { 
+            text-align: center; 
+            margin-top: 0; 
+        }
+        .tg-notice-box { 
+            background: rgba(34, 158, 217, 0.1); 
+            border: 1px solid #229ED9; 
+            border-radius: 5px; 
+            padding: 10px; 
+            margin-bottom: 20px; 
+            font-size: 14px; 
+            color: #e0f0ff; 
+            text-align: center; 
+        }
+        .tg-inline-link { 
+            color: #00f3ff; 
+            font-weight: bold; 
+            text-decoration: none; 
+        }
+        .form-step { 
+            font-size: 14px; 
+            color: #8fa0b5; 
+            text-align: center; 
+        }
+        .wallet-box { 
+            background: rgba(0, 243, 255, 0.1); 
+            border: 1px dashed var(--cyan); 
+            padding: 12px; 
+            border-radius: 5px; 
+            margin-bottom: 15px; 
+            font-family: monospace; 
+            word-break: break-all; 
+            color: var(--cyan); 
+            font-size: 14px; 
+        }
+        .bep20-wallet { 
+            border-color: #ffca28; 
+            color: #ffca28; 
+            background: rgba(255, 202, 40, 0.05); 
+        }
+        .form-group { 
+            margin-bottom: 15px; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            color: #b0c4de; 
+            font-size: 14px; 
+        }
+        input, select { 
+            width: 100%; 
+            padding: 12px 10px; 
+            border-radius: 5px; 
+            border: 1px solid var(--border); 
+            background: #06090f; 
+            color: #fff; 
+            box-sizing: border-box; 
+            font-size: 15px; 
+        }
+        .submit-btn { 
+            background: linear-gradient(90deg, var(--cyan), var(--purple)); 
+            color: #000; 
+            padding: 12px 25px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 5px; 
+            display: inline-block; 
+            width: 100%; 
+            text-align: center; 
+            border: none; 
+            cursor: pointer; 
+            box-sizing: border-box; 
+            margin-top: 15px; 
+        }
+        .promo-banner { 
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.15) 0%, rgba(0, 243, 255, 0.15) 100%); 
+            border: 2px solid var(--cyan); 
+            border-radius: 12px; 
+            padding: 35px 20px; 
+            margin: 40px auto; 
+            text-align: center; 
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.15); 
+            position: relative; 
+            overflow: hidden; 
+            box-sizing: border-box; 
+        }
+        .promo-badge { 
+            background: var(--alert-red); 
+            color: #fff; 
+            font-size: 11px; 
+            font-weight: bold; 
+            padding: 4px 15px; 
+            position: absolute; 
+            top: 15px; 
+            right: -30px; 
+            transform: rotate(45deg); 
+            width: 120px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
+        .promo-title { 
+            font-size: clamp(18px, 4vw, 24px); 
+            font-weight: bold; 
+            color: var(--gold); 
+            margin-top: 0; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+        }
+        .promo-text { 
+            font-size: 15px; 
+            color: #e2ebf5; 
+            margin: 15px 0; 
+            line-height: 1.6; 
+        }
+        .promo-highlight { 
+            color: var(--cyan); 
+            font-weight: bold; 
+            background: rgba(0, 243, 255, 0.1); 
+            padding: 2px 8px; 
+            border-radius: 4px; 
+        }
+        .prize-list-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+            max-width: 800px; 
+            margin: 30px auto 10px auto; 
+        }
+        .prize-item-box { 
+            background: rgba(6, 9, 15, 0.8); 
+            border: 1px solid var(--border); 
+            border-radius: 10px; 
+            padding: 25px; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: space-between; 
+        }
+        .img-wrapper { 
+            width: 100%; 
+            height: 240px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: 20px; 
+            overflow: hidden; 
+        }
+        .prize-img { 
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain; 
+            display: block; 
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); 
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+        }
+        .prize-item-box:hover .prize-img { 
+            transform: scale(1.08) translateY(-5px); 
+        }
+        .prize-item-box h4 { 
+            margin: 10px 0 5px 0; 
+            color: #fff; 
+            font-size: 18px; 
+            font-weight: bold; 
+        }
+        .prize-item-box p { 
+            margin: 0; 
+            font-size: 14px; 
+            color: #8fa0b5; 
+        }
+        .modal-overlay { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 0, 0, 0.9); 
+            z-index: 1000; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 15px; 
+            box-sizing: border-box; 
+        }
+        .modal-content { 
+            background: #0d131f; 
+            border: 2px solid var(--cyan); 
+            border-radius: 12px; 
+            padding: 25px 20px; 
+            max-width: 550px; 
+            width: 100%; 
+            text-align: left; 
+            box-sizing: border-box; 
+            position: relative; 
+            max-height: 90vh; 
+            overflow-y: auto; 
+        }
+        .image-modal-content { 
+            position: relative; 
+            max-width: 900px; 
+            width: 100%; 
+            background: #06090f; 
+            border: 2px solid var(--cyan); 
+            border-radius: 8px; 
+            padding: 10px; 
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.3); 
+            box-sizing: border-box; 
+        }
+        .image-modal-content img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            border-radius: 4px; 
+        }
+        .close-image-modal { 
+            position: absolute; 
+            top: -45px; 
+            right: 0; 
+            background: none; 
+            border: none; 
+            color: var(--cyan); 
+            font-size: 36px; 
+            cursor: pointer; 
+            font-weight: bold; 
+        }
+        .modal-instruction { 
+            font-size: 14px; 
+            color: #8fa0b5; 
+            text-align: center; 
+            margin: 10px 0; 
+        }
+        .data-summary { 
+            background: #06090f; 
+            border: 1px solid var(--border); 
+            padding: 15px; 
+            border-radius: 6px; 
+            font-family: monospace; 
+            white-space: pre-wrap; 
+            font-size: 13px; 
+            color: #fff; 
+            margin: 15px 0; 
+            word-break: break-all; 
+            border-left: 3px solid var(--cyan); 
+        }
+        .copy-btn { 
+            background: var(--purple); 
+            display: block; 
+            font-size: 14px; 
+            padding: 12px 20px; 
+            color: #000; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            margin: 0 auto; 
+            width: 100%; 
+            max-width: 320px; 
+            text-align: center; 
+        }
+        .modal-btn-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 12px; 
+            margin-top: 15px; 
+        }
+        .m-btn { 
+            padding: 12px; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            text-decoration: none; 
+            text-align: center; 
+            font-size: 14px; 
+            cursor: pointer; 
+            border: none; 
+            display: block; 
+            color: #fff; 
+        }
+        .m-tg { 
+            background: #229ED9; 
+        }
+        .m-mail { 
+            background: #161a23; 
+            border: 1px solid var(--border); 
+            color: #fff; 
+        }
+        .close-modal { 
+            position: absolute; 
+            top: 10px; 
+            right: 15px; 
+            background: none; 
+            border: none; 
+            color: #8fa0b5; 
+            font-size: 28px; 
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">QUANTUM.SMC</div>
+        <a href="https://t.me/aahil_exchange" target="_blank" class="tg-contact">✈️ Institutional Access Desk</a>
+    </header>
+    <section class="hero">
+        <h1>Quantitative Order Flow Intelligence<br><span class="cyan-txt">Driven by Square Root Volatility Filters</span></h1>
+        <p>Eliminate subjective market interpretation. Automatically map institutional liquidity pools, structural displacement zones, and high-probability mitigation blocks engineered for professional risk management systems.</p>
+    </section>
+    <div class="container">
+        <div class="chart-grid">
+            <div class="chart-section">
+                <div class="chart-title">🖥️ TradingView Core Feed Module (Pine v6)</div>
+                <div class="chart-link-wrapper" onclick="openImageModal('chart_sample.png')">
+                    <img src="chart_sample.png" alt="TradingView Interface" class="chart-img">
+                </div>
+            </div>
+            <div class="chart-section">
+                <div class="chart-title">📊 MetaTrader 5 Engine Live Feed Module (.ex5)</div>
+                <div class="chart-link-wrapper" onclick="openImageModal('mt5_sample.png')">
+                    <img src="mt5_sample.png" alt="MetaTrader 5 Interface" class="chart-img">
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="card" style="border-color: var(--purple);">
+                <h3>TradingView Edition</h3>
+                <p>Pine Script v6 Core Architecture</p>
+                <div class="price">$4,999.00 <span class="price-sub">/ lifetime license</span></div>
+                <p class="card-desc">Includes 1:2 execution matrix visualizations, real-time webhook alert arrays, and secure server whitelist tracking nodes.</p>
+                <a href="#register" class="btn">Request License Whitelisting</a>
+            </div>
+            <div class="card" style="border-color: var(--cyan);">
+                <h3>MetaTrader 5 Edition</h3>
+                <p>Compiled MQL5 System Code Engine</p>
+                <div class="price">$4,999.00 <span class="price-sub">/ lifetime license</span></div>
+                <p class="card-desc">Includes multi-asset optimization presets, zero-lag execution compilation architecture, and advanced volatility metrics parameters.</p>
+                <a href="#register" class="btn">Request System Deployment</a>
+            </div>
+        </div>
+        <div class="form-box" id="register">
+            <h2 class="form-title">Security Licensing Gateway</h2>
+            <div class="tg-notice-box">
+                💬 Corporate Inquiry or Direct Procurement Assistance? <br>
+                <a href="https://t.me/aahil_exchange" target="_blank" class="tg-inline-link">Connect to Operations @aahil_exchange</a>
+            </div>
+            <p class="form-step">Step 1: Remit $4,999 USDT to one of our verified clearing addresses:</p>
+            <div class="wallet-box">📥 Network: TRC20 | TTNj6h9sLrbtoFMYhmNpzaGGL5inqpuoSF</div>
+            <div class="wallet-box" style="border-color:#ffca28;color:#ffca28;background:rgba(255,202,40,0.05);">📥 Network: BEP20 | 0x0103e76054294b5f838a87cd266891cb13d6fd28</div>
+            <p class="form-step" style="margin-top:20px;">Step 2: Submit your node data configuration variables:</p>
+            <form onsubmit="handleRegistration(event)">
+                <div class="form-group"><label>License Holder Name</label><input type="text" id="name" required placeholder="John Doe"></div>
+                <div class="form-group"><label>Delivery Email Address</label><input type="email" id="email" required placeholder="institution@domain.com"></div>
+                <div class="form-group"><label>Target Software Core</label><select id="platform"><option>TradingView (Pine Script v6)</option><option>MetaTrader 5 (.ex5 System Engine)</option></select></div>
+                <div class="form-group"><label>Clearing Network Used</label><select id="network"><option value="TRC20">USDT - TRC20 Protocol</option><option value="BEP20">USDT - BEP20 Protocol</option></select></div>
+                <div class="form-group"><label>TradingView Handlers ID</label><input type="text" id="username" placeholder="Optional"></div>
+                <div class="form-group"><label>Cryptographic Transaction Hash (TxID)</label><input type="text" id="txid" required placeholder="Paste verified block execution hash"></div>
+                <button type="submit" class="submit-btn">Compile License Request</button>
+            </form>
+        </div>
+        <div class="promo-banner">
+            <div class="promo-badge">Bonus</div>
+            <div class="promo-title">💎 Early Adoption Infrastructure Allocation 💎</div>
+            <p class="promo-text">To celebrate our milestone deployment, the <span class="promo-highlight">first 30 registered users</span> will be automatically enrolled to receive complimentary premium hardware updates upon system authorization verification check.</p>
+            <div class="prize-list-grid">
+                <div class="prize-item-box" style="border-color: var(--purple);"><div class="img-wrapper"><img src="iphone18.png" alt="Hardware" class="prize-img"></div><h4>📱 2x iPhone 18 Pro Max</h4><p>Premium 512 GB Flagship Tier</p></div>
+                <div class="prize-item-box" style="border-color: var(--cyan);"><div class="img-wrapper"><img src="iphone_duo.png" alt="Hardware" class="prize-img"></div><h4>📱 2x iPhone Duo</h4><p>Premium 512 GB Flagship Tier</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="imageViewerModal" onclick="closeImageViewerModal(event)">
+        <div class="image-modal-content">
+            <button class="close-image-modal" onclick="document.getElementById('imageViewerModal').style.display = 'none'">&times;</button>
+            <img src="" id="popupModalImage" alt="Expanded Visual View">
+        </div>
+    </div>
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <div class="modal-title">🎉 License Verification Data Compiled!</div>
+            <p class="modal-instruction">Your structural deployment configuration payload has been safely generated:</p>
+            <div class="data-summary" id="modalDataText"></div>
+            <p class="modal-instruction" style="color: var(--cyan); font-weight: bold; font-size: 13px;">👉 Step 1: Copy your local data packet layout.</p>
+            <div style="text-align:center; margin:10px 0;"><button class="copy-btn" onclick="copyDataText()">📋 Copy Registration Payload</button></div>
+            <p class="modal-instruction" style="color: #ffca28; font-weight: bold; font-size: 13px; margin-top: 20px;">👉 Step 2: Route this copied payload text directly to the authorization desks to get your software link access:</p>
+            <div class="modal-btn-grid">
+                <a href="https://t.me/aahil_exchange" target="_blank" class="m-btn m-tg">✈️ Forward to Telegram Desk</a>
+                <a href="mailto:realtimecooder@gmail.com" class="m-btn m-mail">✉️ Forward to Email Desk</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function closeModal() { document.getElementById('successModal').style.display = 'none'; }
+        function openImageModal(src) { const modal = document.getElementById('imageViewerModal'); document.getElementById('popupModalImage').src = src; modal.style.display = 'flex'; }
+        function closeImageViewerModal(e) { const modal = document.getElementById('imageViewerModal'); if (e.target === modal) modal.style.display = 'none'; }
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeModal(); document.getElementById('imageViewerModal').style.display = 'none'; } });
+        function copyDataText() { const rawText = document.getElementById('modalDataText').innerText; navigator.clipboard.writeText(rawText); alert("📋 Secure registration payload data copied to clipboard!"); }
+        function handleRegistration(e) { e.preventDefault(); const name = document.getElementById('name').value; const email = document.getElementById('email').value; const platform = document.getElementById('platform').value; const network = document.getElementById('network').value; const username = document.getElementById('username').value || "None Provided"; const txid = document.getElementById('txid').value.trim(); let visibleText = `SECURE QUANTUM SMC CLIENT RECORD DATA\n------------------------------------\nLicense Holder: ${name}\nVerification Email: ${email}\nTarget Deployment Core: ${platform}\nRemittance Protocol: USDT-${network}\nClient Handlers Reference: ${username}\nCryptographic Transaction ID: ${txid}\nChronological Indexing Priority Log: Confirmed`; document.getElementById('modalDataText').innerText = visibleText; document.getElementById('successModal').style.display = 'flex'; }
+    </script>
+</body>
+</html>
