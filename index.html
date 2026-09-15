@@ -21,7 +21,7 @@
 
     <div class="container">
         
-        <!-- 🎁 EXCLUSIVE ACTIVE GIVEAWAY PROMO SECTION (RESPONSIVE GRID) -->
+        <!-- 🎁 EXCLUSIVE ACTIVE GIVEAWAY PROMO SECTION (WITH IMAGES) -->
         <div class="promo-banner">
             <div class="promo-badge">Limited</div>
             <div class="promo-title">⚠️ First 30 Clients Mega Giveaway Campaign ⚠️</div>
@@ -30,17 +30,24 @@
             </p>
             
             <div class="prize-list-grid">
+                <!-- Prize Box 1 -->
                 <div class="prize-item-box" style="border-color: var(--purple);">
+                    <img src="iphone18.png" alt="iPhone 18 Pro Max" class="prize-img">
                     <h4>📱 2x iPhone 18 Pro Max</h4>
                     <p>Premium 512 GB Variants</p>
                 </div>
+                <!-- Prize Box 2 -->
                 <div class="prize-item-box" style="border-color: var(--cyan);">
+                    <img src="iphone_duo.png" alt="iPhone Duo" class="prize-img">
                     <h4>📱 2x iPhone Duo</h4>
                     <p>Premium 512 GB Variants</p>
                 </div>
             </div>
 
-            <p class="promo-text" style="font-size: 13px; margin-bottom: 0; color: var(--gold); font-weight: bold;">
+        
+            </div>
+
+            <p class="promo-text" style="font-size: 13px; margin-top: 20px; margin-bottom: 0; color: var(--gold); font-weight: bold;">
                 ✨ Entry numbers are allocated chronologically based on submission form order block indexing logs.
             </p>
         </div>
@@ -102,7 +109,7 @@
             <p class="modal-instruction" style="color: #ffca28; font-weight: bold; font-size: 13px; margin-top: 20px;">👉 Step 2: Choose a path below to paste the data and contact Admin to get your file link access:</p>
             <div class="modal-btn-grid">
                 <a href="https://t.me" target="_blank" class="m-btn m-tg">✈️ Contact on Telegram</a>
-                <a href="mailto:realtimecooder@gmail.com License Submission Request" class="m-btn m-mail">✉️ Contact via Email</a>
+                <a href="mailto:realtimecooder@://gmail.com License Submission Request" class="m-btn m-mail">✉️ Contact via Email</a>
             </div>
         </div>
     </div>
@@ -119,7 +126,6 @@
         function copyDataText() {
             const rawText = document.getElementById('modalDataText').innerText;
             
-            // Universal clipboard integration for old and new systems
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(rawText).then(function() {
                     alert("📋 Registration data successfully copied to your clipboard!");
