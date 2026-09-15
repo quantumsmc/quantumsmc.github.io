@@ -3,174 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum SMC | Square Root Volatility Indicator for Pine & MT5</title>
-    <!-- Links to your separate design stylesheet file -->
-    <link rel="stylesheet" href="styles.css">
+    <title>Quantum SMC | Square Root Volatility Engine</title>
+    <style>
+        :root { --bg: #06090f; --txt: #f0f4f8; --cyan: #00f3ff; --purple: #9d4edd; --card: #0d131f; --border: #1a2333; }
+        body { font-family: sans-serif; background-color: var(--bg); color: var(--txt); margin: 0; padding: 0; text-align: center; }
+        header { padding: 20px; border-bottom: 1px solid var(--border); font-weight: bold; font-size: 22px; color: var(--cyan); }
+        .hero { padding: 60px 20px; background: radial-gradient(circle at top, #111a2e 0%, var(--bg) 70%); }
+        h1 { font-size: 40px; margin-bottom: 10px; }
+        .cyan-txt { color: var(--cyan); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
+        .card { background: var(--card); padding: 25px; border-radius: 8px; border: 1px solid var(--border); text-align: left; }
+        .price { font-size: 32px; font-weight: bold; color: #fff; margin: 15px 0; }
+        .btn { background: linear-gradient(90deg, var(--cyan), var(--purple)); color: #000; padding: 12px 25px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; width: 80%; text-align: center; border: none; cursor: pointer; }
+        .form-box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 30px; max-width: 500px; margin: 40px auto; text-align: left; }
+        .wallet-box { background: rgba(0, 243, 255, 0.1); border: 1px dashed var(--cyan); padding: 12px; border-radius: 5px; margin-bottom: 15px; font-family: monospace; word-break: break-all; color: var(--cyan); font-size: 14px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #b0c4de; font-size: 14px; }
+        input, select { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border); background: #06090f; color: #fff; box-sizing: border-box; }
+    </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">QUANTUM.SMC</div>
-    </header>
+    <header>QUANTUM.SMC</header>
 
     <section class="hero">
-        <h1>Institutional SMC Analysis<br>Driven by <span class="gradient-text">Square Root Mathematics</span></h1>
-        <p>Mathematical precision meets order flow. Stop drawing subjective lines. Automatically map algorithmic sweeps, market structures, and structural liquidity targets calibrated via square root mathematical variance.</p>
-        <a href="#register" class="btn">Get System Access</a>
+        <h1>Institutional SMC Analysis<br><span class="cyan-txt">Square Root Math Matrix</span></h1>
+        <p>Map algorithmic sweeps, market structures, and liquidity targets calibrated via square root mathematical variance.</p>
     </section>
 
     <div class="container">
-        <h2 class="section-title">Engineered For Systematic Traders</h2>
-        <p class="section-subtitle">How square root modeling elevates traditional smart money concepts.</p>
-        
         <div class="grid">
-            <div class="card">
-                <span class="badge">Square Root Volatility Formula</span>
-                <h3>🧮 Math-Driven Market Structure</h3>
-                <p>Traditional SMC indicator break of structures (BOS) are subjective. Our algorithm utilizes a strict square root variance filter to verify true institutional volume break, preventing false displacement signals.</p>
-            </div>
-            
-            <div class="card">
-                <span class="badge">Real-Time Fluid Calculations</span>
-                <h3>🎯 Dynamic Liquidity Marking</h3>
-                <p>Instantly highlights buy-side liquidity (BSL) and sell-side liquidity (SSL) zones. The indicator maps out internal vs swing liquidity pools, plotting exactly where retail stops are resting.</p>
-            </div>
-            
-            <div class="card">
-                <span class="badge">Execution Optimization</span>
-                <h3>⚡ Order Blocks & Premium/Discount</h3>
-                <p>Automatically isolates mitigation blocks, breaker blocks, and fair value gaps (FVG) calculated using true volatility-adjusted mathematical sizing rather than fixed pip counts.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container" id="pricing">
-        <h2 class="section-title">Select Your Development Platform</h2>
-        <p class="section-subtitle">Send payment to the wallet below, then submit your access registration details.</p>
-        
-        <div class="grid">
-            <div class="card pricing-card">
+            <div class="card" style="border-color: var(--purple);">
                 <h3>TradingView Edition</h3>
                 <p>Pine Script v6 Access</p>
-                <div class="price">$69 <span>/ one-time</span></div>
-                <p class="card-details">Includes mathematical 1:2 Risk/Reward target metrics, webhook access, and TradingView whitelist authentication.</p>
+                <div class="price">$69 <span style="font-size:14px; color:#8fa0b5;">/ one-time</span></div>
                 <a href="#register" class="btn">Select & Register</a>
             </div>
-
-            <div class="card pricing-card premium-border">
+            <div class="card" style="border-color: var(--cyan);">
                 <h3>MetaTrader 5 Edition</h3>
                 <p>Compiled MT5 File (.ex5)</p>
-                <div class="price">$69 <span>/ one-time</span></div>
-                <p class="card-details">Includes email delivery of optimized .ex5 indicator files containing algorithmic 1:2 execution matrices.</p>
+                <div class="price">$69 <span style="font-size:14px; color:#8fa0b5;">/ one-time</span></div>
                 <a href="#register" class="btn">Select & Register</a>
             </div>
         </div>
 
-        <!-- REGISTRATION FORM SECTION -->
-        <div class="form-section" id="register">
-            <h3 class="form-title">Indicator Registration Form</h3>
+        <div class="form-box" id="register">
+            <h2 style="text-align:center; margin-top:0;">Registration Form</h2>
+            <p style="font-size:14px; color:#8fa0b5; text-align:center;">Step 1: Send $69 USDT to an address below:</p>
             
-            <p class="form-instruction">
-                <b>Step 1:</b> Send exactly <b>$69 USDT</b> to one of our official deposit network addresses below:
-            </p>
-            
-            <!-- TRC20 Wallet Address Display Box -->
-            <div class="wallet-box" style="margin-bottom: 12px;">
-                📥 <b>USDT (TRC20 Address):</b><br>
-                <span style="user-select: all; font-weight: bold; color: var(--accent-cyan);">TTNj6h9sLrbtoFMYhmNpzaGGL5inqpuoSF</span>
-            </div>
+            <div class="wallet-box">📥 TRC20: TTNj6h9sLrbtoFMYhmNpzaGGL5inqpuoSF</div>
+            <div class="wallet-box" style="border-color: #ffca28; color: #ffca28; background: rgba(255,202,40,0.05);">📥 BEP20: 0x0103e76054294b5f838a87cd266891cb13d6fd28</div>
 
-            <!-- BEP20 Wallet Address Display Box -->
-            <div class="wallet-box">
-                📥 <b>USDT (BEP20 Address):</b><br>
-                <span style="user-select: all; font-weight: bold; color: #ffca28;">0x0103e76054294b5f838a87cd266891cb13d6fd28</span>
-            </div>
+            <p style="font-size:14px; color:#8fa0b5; text-align:center; margin-top:20px;">Step 2: Submit verification parameters:</p>
 
-            <p class="form-instruction" style="margin-top: 25px;">
-                <b>Step 2:</b> Submit your profile registration details below to verify and complete configuration setup:
-            </p>
-
-            <!-- DIRECT LOCAL EMAIL FORM SUBMISSION ENGINE -->
-            <form id="cryptoLoginForm" onsubmit="sendRegistrationEmail(event)">
-                <div class="form-group">
-                    <label for="name">Your Full Name</label>
-                    <input type="text" id="name" required placeholder="John Doe">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Delivery Email Address</label>
-                    <input type="email" id="email" required placeholder="name@email.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="platform">Selected Software License</label>
-                    <select id="platform" relational="platform" required>
-                        <option value="TradingView (Pine Script)">TradingView (Pine Script) - $69</option>
-                        <option value="MetaTrader 5 (.ex5)">MetaTrader 5 (.ex5) - $69</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="network">Payment Network Used</label>
-                    <select id="network" required>
-                        <option value="USDT - TRC20">USDT - TRC20</option>
-                        <option value="USDT - BEP20">USDT - BEP20</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="username">TradingView Username (Leave blank if MT5 chosen)</label>
-                    <input type="text" id="username" placeholder="e.g. TradingView_Trader123">
-                </div>
-
-                <div class="form-group">
-                    <label for="txid">Crypto Transaction Hash ID (TxID Reference)</label>
-                    <input type="text" id="txid" required placeholder="Paste your block confirmation hash tracking string">
-                </div>
-
-                <button type="submit" class="submit-btn">Submit Registration & Request Access</button>
+            <form onsubmit="sendEmail(event)">
+                <div class="form-group"><label>Full Name</label><input type="text" id="name" mountaineer required></div>
+                <div class="form-group"><label>Delivery Email</label><input type="email" id="email" required></div>
+                <div class="form-group"><label>Platform License</label><select id="platform"><option>TradingView (Pine Script)</option><option>MetaTrader 5 (.ex5)</option></select></div>
+                <div class="form-group"><label>Crypto Network Used</label><select id="network"><option>USDT - TRC20</option><option>USDT - BEP20</option></select></div>
+                <div class="form-group"><label>TradingView Username</label><input type="text" id="username" placeholder="Optional"></div>
+                <div class="form-group"><label>Transaction Hash ID (TxID)</label><input type="text" id="txid" required></div>
+                <button type="submit" class="btn" style="width:100%;">Submit Request</button>
             </form>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Quantum SMC Algorithm. All Rights Reserved.<br>
-        Disclaimer: Trading foreign exchange, cryptographic assets, or equities carries high risk. The square root formula is a volatility model tool and does not guarantee market profitability.</p>
-    </footer>
-
-    <!-- Native Script Component to intercept form data and package directly into mailto engine -->
     <script>
-        function sendRegistrationEmail(event) {
-            event.preventDefault();
-            
-            // Extract raw data fields straight from the user form
-            const name = document.getElementById('name').value;
-            const clientEmail = document.getElementById('email').value;
-            const platform = document.getElementById('platform').value;
-            const network = document.getElementById('network').value;
-            const tvUsername = document.getElementById('username').value || "None Provided";
-            const txid = document.getElementById('txid').value;
-            
-            // Destination target setup
-            const targetMerchantEmail = "realtimecooder@gmail.com";
-            const emailSubject = encodeURIComponent("Quantum SMC License Registration Request - " + name);
-            
-            // Format structured mail content matrix layout for clear ingestion readability
-            let emailBody = "QUANTUM SMC LICENSE REGISTRATION FORM SUBMISSION%0D%0A";
-            emailBody += "==================================================%0D%0A%0D%0A";
-            emailBody += "Customer Name: " + name + "%0D%0A";
-            emailBody += "Delivery Email: " + clientEmail + "%0D%0A";
-            emailBody += "Software Choice: " + platform + "%0D%0A";
-            emailBody += "Blockchain Network: " + network + "%0D%0A";
-            emailBody += "TradingView Username: " + tvUsername + "%0D%0A";
-            emailBody += "Transaction Hash ID (TxID): " + txid + "%0D%0A%0D%0A";
-            emailBody += "==================================================%0D%0A";
-            emailBody += "Please cross-verify this transaction block hash on the explorer node before manual indicator license whitelisting deployment.";
-
-            // Execute client environment system routing hook safely
-            window.location.href = "mailto:" + targetMerchantEmail + "?subject=" + emailSubject + "&body=" + emailBody;
+        function sendEmail(e) {
+            e.preventDefault();
+            const body = `Name: ${document.getElementById('name').value}%0DEmail: ${document.getElementById('email').value}%0DPlatform: ${document.getElementById('platform').value}%0DNetwork: ${document.getElementById('network').value}%0DUser: ${document.getElementById('username').value}%0DTxID: ${document.getElementById('txid').value}`;
+            window.location.href = `mailto:realtimecooder@://gmail.com Registration&body=${body}`;
         }
     </script>
-
 </body>
 </html>
