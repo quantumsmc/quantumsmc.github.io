@@ -1,10 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum SMC | Square Root Volatility Engine</title>
+    <!-- Connects cleanly to your external style sheet file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">QUANTUM.SMC</div>
+        <a href="https://t.me" target="_blank" class="tg-contact">✈️ Telegram Admin</a>
+    </header>
+
+    <section class="hero">
+        <h1>Institutional SMC Analysis<br><span class="cyan-txt">Square Root Math Matrix</span></h1>
+        <p>Map algorithmic sweeps, market structures, and liquidity targets calibrated via square root mathematical variance.</p>
+    </section>
+
+    <div class="container">
+        <div class="grid">
+            <div class="card" style="border-color: var(--purple);">
+                <h3>TradingView Edition</h3>
+                <p>Pine Script v6 Access</p>
+                <div class="price">$69 <span class="price-sub">/ one-time</span></div>
+                <a href="#register" class="btn">Select & Register</a>
+            </div>
+            <div class="card" style="border-color: var(--cyan);">
+                <h3>MetaTrader 5 Edition</h3>
+                <p>Compiled MT5 File (.ex5)</p>
+                <div class="price">$69 <span class="price-sub">/ one-time</span></div>
+                <a href="#register" class="btn">Select & Register</a>
+            </div>
+        </div>
+
+        <div class="form-box" id="register">
+            <h2 class="form-title">Registration Form</h2>
+            
+            <div class="tg-notice-box">
+                💬 Need help or want to buy directly over chat? <br>
+                <a href="https://t.me" target="_blank" class="tg-inline-link">Message @aahil_exchange on Telegram</a>
+            </div>
+
+            <p class="form-step">Step 1: Send $69 USDT to an address below:</p>
+            
+            <div class="wallet-box">📥 TRC20: TTNj6h9sLrbtoFMYhmNpzaGGL5inqpuoSF</div>
+            <div class="wallet-box bep20-wallet">📥 BEP20: 0x0103e76054294b5f838a87cd266891cb13d6fd28</div>
+
+            <p class="form-step" style="margin-top:20px;">Step 2: Submit verification parameters:</p>
+
+            <form onsubmit="validateAndSendEmail(event)">
+                <div class="form-group"><label>Full Name</label><input type="text" id="name" required></div>
+                <div class="form-group"><label>Delivery Email</label><input type="email" id="email" required></div>
+                <div class="form-group"><label>Platform License</label><select id="platform"><option>TradingView (Pine Script)</option><option>MetaTrader 5 (.ex5)</option></select></div>
+                <div class="form-group"><label>Crypto Network Used</label><select id="network" onchange="clearError()"><option value="TRC20">USDT - TRC20</option><option value="BEP20">USDT - BEP20</option></select></div>
+                <div class="form-group"><label>TradingView Username</label><input type="text" id="username" placeholder="Optional"></div>
+                
+                <div class="form-group">
+                    <label>Transaction Hash ID (TxID)</label>
+                    <input type="text" id="txid" required placeholder="Paste your block hash reference string" oninput="clearError()">
+                    <div id="txid-error" class="error-msg">⚠️ Invalid Hash Format Detected.</div>
+                </div>
+                
+                <div class="notice-box">
+                    ℹ️ <b>Note:</b> Submitting will automatically generate your email details. Please manually attach your payment confirmation screenshot before sending the email!
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // ==========================================
-        // ⚙️ TESTING SWITCH CONFIGURATION
-        // ==========================================
-        // Set to true to turn OFF validation (accepts any text for testing)
-        // Set to false to turn ON validation (strict checking for real users)
-        const bypassValidation = true; 
+        // Set to true to turn OFF strict validation checks for layout testing. 
+        // Set to false for live production tracking.
+        var bypassValidation = true; 
 
         function clearError() {
             document.getElementById('txid-error').style.display = 'none';
@@ -13,25 +84,22 @@
         function validateAndSendEmail(e) {
             e.preventDefault();
             
-            const network = document.getElementById('network').value;
-            const txid = document.getElementById('txid').value.trim();
-            const errorElement = document.getElementById('txid-error');
+            var network = document.getElementById('network').value;
+            var txid = document.getElementById('txid').value.trim();
+            var errorElement = document.getElementById('txid-error');
             
-            const trc20Regex = /^[a-fA-F0-9]{64}$/; 
-            const bep20Regex = /^0x[a-fA-F0-9]{64}$/;
+            var trc20Regex = /^[a-fA-F0-9]{64}$/; 
+            var bep20Regex = /^0x[a-fA-F0-9]{64}$/;
+            var isValid = false;
 
-            let isValid = false;
-
-            // Check if validation is bypassed for testing
             if (bypassValidation) {
                 isValid = true; 
             } else {
-                // Run strict crypto checks if validation is turned ON
                 if (network === "TRC20") {
                     if (trc20Regex.test(txid)) {
                         isValid = true;
                     } else {
-                        errorElement.innerText = "⚠️ Invalid TRC20 TxID. Must be exactly 64 characters.";
+                        errorElement.innerText = "⚠️ Invalid TRC20 TxID. Must be exactly 64 hex characters.";
                         errorElement.style.display = "block";
                     }
                 } else if (network === "BEP20") {
@@ -45,17 +113,17 @@
             }
 
             if (isValid) {
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const platform = document.getElementById('platform').value;
-                const username = document.getElementById('username').value || "None";
+                var name = document.getElementById('name').value;
+                var email = document.getElementById('email').value;
+                var platform = document.getElementById('platform').value;
+                var username = document.getElementById('username').value || "None";
+                var testText = bypassValidation ? "[TEST MODE ACTIVE]%0D%0A" : "";
                 
-                // Add a notice if you are currently running a test
-                const testStatus = bypassValidation ? "%0D%0A[TEST MODE ACTIVE - NO HASH VALIDATION RUN]" : "";
+                var mailBody = testText + "QUANTUM SMC REGISTRATION DATA%0D%0A-------------------------%0D%0AName: " + name + "%0DEmail: " + email + "%0DPlatform: " + platform + "%0DNetwork: USDT-" + network + "%0DUser: " + username + "%0DTxID: " + txid + "%0D%0A-------------------------%0D%0A[Please attach your payment screenshot directly to this email before sending]";
                 
-                const body = `QUANTUM SMC REGISTRATION DATA${testStatus}%0D%0A-------------------------%0D%0AName: ${name}%0DEmail: ${email}%0DPlatform: ${platform}%0DNetwork: USDT-${network}%0DUser: ${username}%0DTxID: ${txid}%0D%0A-------------------------%0D%0A[Please attach your payment screenshot directly to this email before sending]`;
-                
-                window.location.href = `mailto:realtimecooder@://gmail.com Registration - ${encodeURIComponent(name)}&body=${body}`;
+                window.location.href = "mailto:realtimecooder@://gmail.com Registration - " + encodeURIComponent(name) + "&body=" + mailBody;
             }
         }
     </script>
+</body>
+</html>

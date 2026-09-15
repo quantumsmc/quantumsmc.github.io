@@ -1,6 +1,6 @@
-/* ==========================================
-   🎨 QUANTUM.SMC CENTRAL STYLESHEET
-   ========================================== */
+/* ==========================================================================
+   🎨 QUANTUM SMC CENTRAL DESIGN HOOKS
+   ========================================================================== */
 
 :root { 
     --bg: #06090f; 
@@ -12,7 +12,7 @@
 }
 
 body { 
-    font-family: sans-serif; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
     background-color: var(--bg); 
     color: var(--txt); 
     margin: 0; 
@@ -21,11 +21,35 @@ body {
 }
 
 header { 
-    padding: 20px; 
+    padding: 20px 5%; 
     border-bottom: 1px solid var(--border); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    box-sizing: border-box; 
+}
+
+.logo { 
     font-weight: bold; 
     font-size: 22px; 
     color: var(--cyan); 
+}
+
+.tg-contact { 
+    background: #229ED9; 
+    color: #fff; 
+    text-decoration: none; 
+    padding: 8px 16px; 
+    border-radius: 20px; 
+    font-size: 14px; 
+    font-weight: bold; 
+    display: inline-block;
+    transition: 0.2s; 
+}
+
+.tg-contact:hover { 
+    background: #1c82b3; 
+    transform: translateY(-1px); 
 }
 
 .hero { 
@@ -70,6 +94,11 @@ h1 {
     margin: 15px 0; 
 }
 
+.price-sub {
+    font-size: 14px; 
+    color: #8fa0b5;
+}
+
 .btn { 
     background: linear-gradient(90deg, var(--cyan), var(--purple)); 
     color: #000; 
@@ -78,10 +107,11 @@ h1 {
     font-weight: bold; 
     border-radius: 5px; 
     display: inline-block; 
-    width: 80%; 
+    width: 100%; 
     text-align: center; 
     border: none; 
     cursor: pointer; 
+    box-sizing: border-box; 
 }
 
 .form-box { 
@@ -94,6 +124,34 @@ h1 {
     text-align: left; 
 }
 
+.form-title {
+    text-align: center; 
+    margin-top: 0;
+}
+
+.tg-notice-box {
+    background: rgba(34, 158, 217, 0.1); 
+    border: 1px solid #229ED9; 
+    border-radius: 5px; 
+    padding: 10px; 
+    margin-bottom: 20px; 
+    font-size: 14px; 
+    color: #e0f0ff; 
+    text-align: center;
+}
+
+.tg-inline-link {
+    color: #00f3ff; 
+    font-weight: bold; 
+    text-decoration: none;
+}
+
+.form-step {
+    font-size: 14px; 
+    color: #8fa0b5; 
+    text-align: center;
+}
+
 .wallet-box { 
     background: rgba(0, 243, 255, 0.1); 
     border: 1px dashed var(--cyan); 
@@ -104,6 +162,12 @@ h1 {
     word-break: break-all; 
     color: var(--cyan); 
     font-size: 14px; 
+}
+
+.bep20-wallet {
+    border-color: #ffca28; 
+    color: #ffca28; 
+    background: rgba(255, 202, 40, 0.05);
 }
 
 .form-group { 
@@ -125,4 +189,39 @@ input, select {
     background: #06090f; 
     color: #fff; 
     box-sizing: border-box; 
+}
+
+.error-msg { 
+    color: #ff3333; 
+    font-size: 13px; 
+    margin-top: 5px; 
+    display: none; 
+    font-weight: bold; 
+}
+
+.notice-box { 
+    background: rgba(157, 78, 221, 0.1); 
+    border: 1px solid var(--purple); 
+    border-radius: 5px; 
+    padding: 10px; 
+    font-size: 13px; 
+    color: #d0c0f0; 
+    margin-top: 15px; 
+    line-height: 1.4; 
+}
+
+.submit-btn {
+    background: linear-gradient(90deg, var(--cyan), var(--purple)); 
+    color: #000; 
+    padding: 12px 25px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    border-radius: 5px; 
+    display: inline-block; 
+    width: 100%; 
+    text-align: center; 
+    border: none; 
+    cursor: pointer; 
+    box-sizing: border-box;
+    margin-top: 15px;
 }
