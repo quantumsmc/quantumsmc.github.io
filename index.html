@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum SMC | Square Root Volatility Engine</title>
-    <!-- Connects cleanly to your external stylesheet file -->
+    <!-- Connected to separate stylesheet file -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,6 +20,31 @@
     </section>
 
     <div class="container">
+        
+        <!-- 🎁 EXCLUSIVE ACTIVE GIVEAWAY PROMO SECTION -->
+        <div class="promo-banner">
+            <div class="promo-badge">Limited</div>
+            <div class="promo-title">⚠️ First 30 Clients Mega Giveaway Campaign ⚠️</div>
+            <p class="promo-text">
+                Secure your software license today to be automatically logged into our launch sweepstakes. This exclusive reward loop is strictly restricted to the <span class="promo-highlight">First 30 Registered Buyers</span>.
+            </p>
+            
+            <div class="prize-list-grid">
+                <div class="prize-item-box" style="border-color: var(--purple);">
+                    <h4>📱 2x iPhone 18 Pro Max</h4>
+                    <p>Premium 512 GB Variants</p>
+                </div>
+                <div class="prize-item-box" style="border-color: var(--cyan);">
+                    <h4>📱 2x iPhone Duo</h4>
+                    <p>Premium 512 GB Variants</p>
+                </div>
+            </div>
+
+            <p class="promo-text" style="font-size: 13px; margin-bottom: 0; color: var(--gold); font-weight: bold;">
+                ✨ Entry numbers are allocated chronologically based on submission form order block indexing logs.
+            </p>
+        </div>
+
         <div class="grid">
             <div class="card" style="border-color: var(--purple);">
                 <h3>TradingView Edition</h3>
@@ -43,8 +68,7 @@
                 <a href="https://t.me" target="_blank" class="tg-inline-link">Message @aahil_exchange on Telegram</a>
             </div>
 
-            <p class="form-step">Step 1: Send $4,999.00 USDT to an address below:</p>
-            
+            <p class="form-step">Step 1: Send $4,999 USDT to an address below:</p>
             <div class="wallet-box">📥 TRC20: TTNj6h9sLrbtoFMYhmNpzaGGL5inqpuoSF</div>
             <div class="wallet-box bep20-wallet">📥 BEP20: 0x0103e76054294b5f838a87cd266891cb13d6fd28</div>
 
@@ -63,23 +87,21 @@
         </div>
     </div>
 
-    <!-- NATIVE POPUP GRAPHICS LAYER CONTAINER -->
     <div class="modal-overlay" id="successModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">×</button>
             <div class="modal-title">🎉 Registration Generated!</div>
-            <p class="modal-instruction">Your verification data packet has been successfully built below:</p>
+            <p class="modal-instruction">Your secure transaction verification data packet has been successfully built below:</p>
             
             <div class="data-summary" id="modalDataText"></div>
-            
-            <p class="modal-instruction" style="color: var(--cyan); font-weight: bold; font-size: 13px; text-align: center;">👉 Step 1: Click the button below to copy your data.</p>
+
+            <p class="modal-instruction" style="color: var(--cyan); font-weight: bold; font-size: 13px;">👉 Step 1: Click the copy button below to copy your text package data.</p>
             <div style="text-align:center; margin:10px 0;"><button class="copy-btn" onclick="copyDataText()">📋 Copy My Registration Data</button></div>
 
-            <p class="modal-instruction" style="color: #ffca28; font-weight: bold; font-size: 13px; margin-top: 20px; text-align: center;">👉 Step 2: Open your platform below, paste your data, and click send:</p>
+            <p class="modal-instruction" style="color: #ffca28; font-weight: bold; font-size: 13px; margin-top: 20px;">👉 Step 2: Choose a path below to paste the data and contact Admin to get your file link access:</p>
             <div class="modal-btn-grid">
-                <!-- Pure Web Direct Redirect Targets -->
-                <a href="https://t.me" target="_blank" class="m-btn m-tg">✈️ Send on Telegram</a>
-                <a href="mailto:realtimecooder@gmail.com" class="m-btn m-mail">✉️ Send via Email</a>
+                <a href="https://t.me" target="_blank" class="m-btn m-tg">✈️ Contact on Telegram</a>
+                <a href="mailto:realtimecooder@://gmail.com License Submission Request" class="m-btn m-mail">✉️ Contact via Email</a>
             </div>
         </div>
     </div>
@@ -89,24 +111,14 @@
             document.getElementById('successModal').style.display = 'none';
         }
 
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
         function copyDataText() {
             const rawText = document.getElementById('modalDataText').innerText;
-            
-            // Modern Clipboard Execution
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(rawText).then(function() {
-                    alert("📋 Success! Data packet copied to your clipboard. Now click Telegram or Email below and paste it inside the message container!");
-                });
-            } else {
-                // Fallback implementation for older web environments
-                const textArea = document.createElement("textarea");
-                textArea.value = rawText;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand("copy");
-                document.body.removeChild(textArea);
-                alert("📋 Success! Data packet copied to your clipboard. Now click Telegram or Email below and paste it inside the message container!");
-            }
+            navigator.clipboard.writeText(rawText);
+            alert("📋 Registration data successfully copied to your clipboard! You can now paste it directly into Telegram or Email.");
         }
 
         function handleRegistration(e) {
@@ -127,6 +139,7 @@
             visibleText += `Crypto Network: USDT-${network}\n`;
             visibleText += `TradingView User: ${username}\n`;
             visibleText += `Transaction ID: ${txid}\n`;
+            visibleText += `Promo Status: Entered into First 30 Clients Campaign\n`;
             visibleText += `-------------------------`;
             
             document.getElementById('modalDataText').innerText = visibleText;
