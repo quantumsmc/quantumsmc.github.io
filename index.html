@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum SMC | Square Root Volatility Engine</title>
-    <!-- Connects to your external stylesheet file safely across any device -->
+    <!-- Connects to your standalone design stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <header>
         <div class="logo">QUANTUM.SMC</div>
-        <a href="https://t.me" target="_blank" class="tg-contact">✈️ Telegram Admin</a>
+        <a href="https://t.me/AAHIL_EXCHANGE" target="_blank" class="tg-contact">✈️ Telegram </a>
     </header>
 
     <section class="hero">
@@ -21,7 +21,13 @@
 
     <div class="container">
         
-        <!-- 🎁 EXCLUSIVE ACTIVE GIVEAWAY PROMO SECTION (WITH IMAGES) -->
+        <!-- 📊 TRADING SOFTWARE SAMPLE GRAPHIC FEED CONTAINER -->
+        <div class="chart-section">
+            <div class="chart-title">📈 System Framework Execution Engine Live Feed</div>
+            <img src="chart_sample.png" alt="Quantum SMC Matrix Execution Sample Chart" class="chart-img">
+        </div>
+
+        <!-- 🎁 EXCLUSIVE ACTIVE GIVEAWAY PROMO SECTION (WITH MAXIMUM SIZED IMAGES) -->
         <div class="promo-banner">
             <div class="promo-badge">Limited</div>
             <div class="promo-title">⚠️ First 30 Clients Mega Giveaway Campaign ⚠️</div>
@@ -30,24 +36,26 @@
             </p>
             
             <div class="prize-list-grid">
-                <!-- Prize Box 1 -->
+                <!-- Large iPhone 18 Pro Max Display Unit -->
                 <div class="prize-item-box" style="border-color: var(--purple);">
-                    <img src="iphone18.png" alt="iPhone 18 Pro Max" class="prize-img">
+                    <div class="img-wrapper">
+                        <img src="iphone18.png" alt="iPhone 18 Pro Max" class="prize-img">
+                    </div>
                     <h4>📱 2x iPhone 18 Pro Max</h4>
                     <p>Premium 512 GB Variants</p>
                 </div>
-                <!-- Prize Box 2 -->
+                
+                <!-- Large iPhone Duo Display Unit -->
                 <div class="prize-item-box" style="border-color: var(--cyan);">
-                    <img src="iphone_duo.png" alt="iPhone Duo" class="prize-img">
+                    <div class="img-wrapper">
+                        <img src="iphone_duo.png" alt="iPhone Duo" class="prize-img">
+                    </div>
                     <h4>📱 2x iPhone Duo</h4>
                     <p>Premium 512 GB Variants</p>
                 </div>
             </div>
 
-        
-            </div>
-
-            <p class="promo-text" style="font-size: 13px; margin-top: 20px; margin-bottom: 0; color: var(--gold); font-weight: bold;">
+            <p class="promo-text" style="font-size: 13px; margin-bottom: 0; color: var(--gold); font-weight: bold;">
                 ✨ Entry numbers are allocated chronologically based on submission form order block indexing logs.
             </p>
         </div>
@@ -72,7 +80,7 @@
             
             <div class="tg-notice-box">
                 💬 Need help or want to buy directly over chat? <br>
-                <a href="https://t.me" target="_blank" class="tg-inline-link">Message @aahil_exchange on Telegram</a>
+                <a href="https://t.me/aahil_exchange" target="_blank" class="tg-inline-link">Message @aahil_exchange on Telegram</a>
             </div>
 
             <p class="form-step">Step 1: Send $4,999 USDT to an address below:</p>
@@ -94,7 +102,7 @@
         </div>
     </div>
 
-    <!-- NATIVE SYSTEM CROSS-PLATFORM OVERLAY CONTAINER -->
+    <!-- RESPONSIVE MODAL CONTAINER LAYER -->
     <div class="modal-overlay" id="successModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">×</button>
@@ -109,7 +117,7 @@
             <p class="modal-instruction" style="color: #ffca28; font-weight: bold; font-size: 13px; margin-top: 20px;">👉 Step 2: Choose a path below to paste the data and contact Admin to get your file link access:</p>
             <div class="modal-btn-grid">
                 <a href="https://t.me" target="_blank" class="m-btn m-tg">✈️ Contact on Telegram</a>
-                <a href="mailto:realtimecooder@://gmail.com License Submission Request" class="m-btn m-mail">✉️ Contact via Email</a>
+                <a href="mailto:realtimecooder@gmail.com" class="m-btn m-mail">✉️ Contact via Email</a>
             </div>
         </div>
     </div>
@@ -125,20 +133,8 @@
 
         function copyDataText() {
             const rawText = document.getElementById('modalDataText').innerText;
-            
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(rawText).then(function() {
-                    alert("📋 Registration data successfully copied to your clipboard!");
-                });
-            } else {
-                const textArea = document.createElement("textarea");
-                textArea.value = rawText;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand("copy");
-                document.body.removeChild(textArea);
-                alert("📋 Registration data successfully copied to your clipboard!");
-            }
+            navigator.clipboard.writeText(rawText);
+            alert("📋 Registration data successfully copied to your clipboard!");
         }
 
         function handleRegistration(e) {
