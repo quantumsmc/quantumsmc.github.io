@@ -51,9 +51,9 @@
         <div class="grid">
             <div class="card pricing-card">
                 <h3>TradingView Edition</h3>
-                <p>Pine Script v5 Access</p>
+                <p>Pine Script v6 Access</p>
                 <div class="price">$69 <span>/ one-time</span></div>
-                <p class="card-details">Includes manual layout access setup within 24 hours via TradingView Whitelist backend.</p>
+                <p class="card-details">Includes mathematical 1:2 Risk/Reward target metrics, webhook access, and TradingView whitelist authentication.</p>
                 <a href="#register" class="btn">Select & Register</a>
             </div>
 
@@ -61,7 +61,7 @@
                 <h3>MetaTrader 5 Edition</h3>
                 <p>Compiled MT5 File (.ex5)</p>
                 <div class="price">$69 <span>/ one-time</span></div>
-                <p class="card-details">Includes email delivery of optimized .ex5 indicator files alongside layout parameter setup guides.</p>
+                <p class="card-details">Includes email delivery of optimized .ex5 indicator files containing algorithmic 1:2 execution matrices.</p>
                 <a href="#register" class="btn">Select & Register</a>
             </div>
         </div>
@@ -90,21 +90,21 @@
                 <b>Step 2:</b> Submit your profile registration details below to verify and complete configuration setup:
             </p>
 
-            <!-- 📩 REMEMBER TO REPLACE YOUR_ENDPOINT_HERE WITH YOUR FORMSPREE LINK -->
-            <form action="https://formspree.io" method="POST">
+            <!-- DIRECT LOCAL EMAIL FORM SUBMISSION ENGINE -->
+            <form id="cryptoLoginForm" onsubmit="sendRegistrationEmail(event)">
                 <div class="form-group">
                     <label for="name">Your Full Name</label>
-                    <input type="text" id="name" name="name" required placeholder="John Doe">
+                    <input type="text" id="name" required placeholder="John Doe">
                 </div>
 
                 <div class="form-group">
                     <label for="email">Delivery Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="name@email.com">
+                    <input type="email" id="email" required placeholder="name@email.com">
                 </div>
 
                 <div class="form-group">
                     <label for="platform">Selected Software License</label>
-                    <select id="platform" name="platform" required>
+                    <select id="platform" relational="platform" required>
                         <option value="TradingView (Pine Script)">TradingView (Pine Script) - $69</option>
                         <option value="MetaTrader 5 (.ex5)">MetaTrader 5 (.ex5) - $69</option>
                     </select>
@@ -112,7 +112,7 @@
 
                 <div class="form-group">
                     <label for="network">Payment Network Used</label>
-                    <select id="network" name="network" required>
+                    <select id="network" required>
                         <option value="USDT - TRC20">USDT - TRC20</option>
                         <option value="USDT - BEP20">USDT - BEP20</option>
                     </select>
@@ -120,12 +120,12 @@
 
                 <div class="form-group">
                     <label for="username">TradingView Username (Leave blank if MT5 chosen)</label>
-                    <input type="text" id="username" name="username" placeholder="e.g. TradingView_Trader123">
+                    <input type="text" id="username" placeholder="e.g. TradingView_Trader123">
                 </div>
 
                 <div class="form-group">
                     <label for="txid">Crypto Transaction Hash ID (TxID Reference)</label>
-                    <input type="text" id="txid" name="txid" required placeholder="Paste your block confirmation hash tracking string">
+                    <input type="text" id="txid" required placeholder="Paste your block confirmation hash tracking string">
                 </div>
 
                 <button type="submit" class="submit-btn">Submit Registration & Request Access</button>
@@ -137,6 +137,40 @@
         <p>&copy; 2026 Quantum SMC Algorithm. All Rights Reserved.<br>
         Disclaimer: Trading foreign exchange, cryptographic assets, or equities carries high risk. The square root formula is a volatility model tool and does not guarantee market profitability.</p>
     </footer>
+
+    <!-- Native Script Component to intercept form data and package directly into mailto engine -->
+    <script>
+        function sendRegistrationEmail(event) {
+            event.preventDefault();
+            
+            // Extract raw data fields straight from the user form
+            const name = document.getElementById('name').value;
+            const clientEmail = document.getElementById('email').value;
+            const platform = document.getElementById('platform').value;
+            const network = document.getElementById('network').value;
+            const tvUsername = document.getElementById('username').value || "None Provided";
+            const txid = document.getElementById('txid').value;
+            
+            // Destination target setup
+            const targetMerchantEmail = "realtimecooder@gmail.com";
+            const emailSubject = encodeURIComponent("Quantum SMC License Registration Request - " + name);
+            
+            // Format structured mail content matrix layout for clear ingestion readability
+            let emailBody = "QUANTUM SMC LICENSE REGISTRATION FORM SUBMISSION%0D%0A";
+            emailBody += "==================================================%0D%0A%0D%0A";
+            emailBody += "Customer Name: " + name + "%0D%0A";
+            emailBody += "Delivery Email: " + clientEmail + "%0D%0A";
+            emailBody += "Software Choice: " + platform + "%0D%0A";
+            emailBody += "Blockchain Network: " + network + "%0D%0A";
+            emailBody += "TradingView Username: " + tvUsername + "%0D%0A";
+            emailBody += "Transaction Hash ID (TxID): " + txid + "%0D%0A%0D%0A";
+            emailBody += "==================================================%0D%0A";
+            emailBody += "Please cross-verify this transaction block hash on the explorer node before manual indicator license whitelisting deployment.";
+
+            // Execute client environment system routing hook safely
+            window.location.href = "mailto:" + targetMerchantEmail + "?subject=" + emailSubject + "&body=" + emailBody;
+        }
+    </script>
 
 </body>
 </html>
