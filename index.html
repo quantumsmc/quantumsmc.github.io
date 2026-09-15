@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum SMC | Square Root Volatility Engine</title>
-    <!-- Linked to your styling sheet file block -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -63,27 +62,27 @@
         </div>
     </div>
 
-    <!-- SUCCESS INTERACTIVE MODAL OVERLAY COMPONENT -->
+    <!-- NATIVE POPUP GRAPHICS LAYER CONTAINER -->
     <div class="modal-overlay" id="successModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">×</button>
-            <div class="modal-title">🎉 Registration Generated Successfully!</div>
-            <p class="modal-instruction">Your data packet has been successfully structured. Choose your preferred delivery method below to submit your details to the developer panel:</p>
+            <div class="modal-title">🎉 Registration Generated!</div>
+            <p class="modal-instruction">Your secure transaction verification data packet has been successfully built below:</p>
             
             <div class="data-summary" id="modalDataText"></div>
             
-            <div style="text-align:center; margin:15px 0;"><button class="copy-btn" onclick="copyDataText()">📋 Copy Data Packet Text</button></div>
+            <p class="modal-instruction" style="color: var(--cyan); font-weight: bold; font-size: 13px;">👉 Step 1: Click the copy button below to copy your text package data.</p>
+            <div style="text-align:center; margin:10px 0;"><button class="copy-btn" onclick="copyDataText()">📋 Copy My Registration Data</button></div>
 
+            <p class="modal-instruction" style="color: #ffca28; font-weight: bold; font-size: 13px; margin-top: 20px;">👉 Step 2: Choose a path below to paste the data and contact Admin to get your file link access:</p>
             <div class="modal-btn-grid">
-                <a href="#" id="modalTelegramLink" target="_blank" class="m-btn m-tg">✈️ Send on Telegram</a>
-                <a href="#" id="modalEmailLink" class="m-btn m-mail">✉️ Send via Email</a>
+                <a href="https://t.me" target="_blank" class="m-btn m-tg">✈️ Contact on Telegram</a>
+                <a href="mailto:realtimecooder@://gmail.com License Submission Request" class="m-btn m-mail">✉️ Contact via Email</a>
             </div>
         </div>
     </div>
 
     <script>
-        let structuredBodyText = "";
-
         function closeModal() {
             document.getElementById('successModal').style.display = 'none';
         }
@@ -91,7 +90,7 @@
         function copyDataText() {
             const rawText = document.getElementById('modalDataText').innerText;
             navigator.clipboard.writeText(rawText);
-            alert("📋 Data packet successfully copied to clipboard! You can now paste it directly into Telegram or Email.");
+            alert("📋 Registration data successfully copied to your clipboard! You can now paste it directly into Telegram or Email.");
         }
 
         function handleRegistration(e) {
@@ -101,27 +100,20 @@
             const email = document.getElementById('email').value;
             const platform = document.getElementById('platform').value;
             const network = document.getElementById('network').value;
-            const username = document.getElementById('username').value || "None";
+            const username = document.getElementById('username').value || "None Provided";
             const txid = document.getElementById('txid').value.trim();
             
             let visibleText = `QUANTUM SMC REGISTRATION DATA\n`;
             visibleText += `-------------------------\n`;
-            visibleText += `Name: ${name}\n`;
-            visibleText += `Email: ${email}\n`;
-            visibleText += `Platform: ${platform}\n`;
-            visibleText += `Network: USDT-${network}\n`;
-            visibleText += `User: ${username}\n`;
-            visibleText += `TxID: ${txid}\n`;
+            visibleText += `Customer Name: ${name}\n`;
+            visibleText += `Delivery Email: ${email}\n`;
+            visibleText += `Software Target: ${platform}\n`;
+            visibleText += `Crypto Network: USDT-${network}\n`;
+            visibleText += `TradingView User: ${username}\n`;
+            visibleText += `Transaction ID: ${txid}\n`;
             visibleText += `-------------------------`;
             
-            structuredBodyText = visibleText;
             document.getElementById('modalDataText').innerText = visibleText;
-            
-            const urlEncodedBody = encodeURIComponent(visibleText + "\n\n[Please attach your payment screenshot directly if available]");
-            
-            document.getElementById('modalTelegramLink').href = "https://t.me";
-            document.getElementById('modalEmailLink').href = `mailto:realtimecooder@://gmail.com License Request - ${encodeURIComponent(name)}&body=${urlEncodedBody}`;
-            
             document.getElementById('successModal').style.display = 'flex';
         }
     </script>
