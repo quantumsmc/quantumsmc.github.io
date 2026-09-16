@@ -63,27 +63,33 @@
                 <a href="https://t.me" target="_blank" class="tg-inline-link">Connect to Operations @aahil_exchange</a>
             </div>
 
-            <!-- ========================================== -->
-            <!-- FIREBASE AUTHENTICATION INTERFACE MODULE   -->
-            <!-- ========================================== -->
-            <div id="authGate" class="auth-gate-box">
-                <h3>🔒 Security Access Authorization Required</h3>
-                <p class="auth-gate-desc">You must sign into an operational engine identity before submitting infrastructure clearing hashes.</p>
-                
-                <div class="auth-input-group">
-                    <input type="email" id="authEmail" placeholder="Operational Email Address">
-                    <input type="password" id="authPassword" placeholder="Security Password">
-                </div>
-                
-                <div class="auth-action-row">
-                    <button id="btnEmailLogin" class="auth-btn auth-btn-primary">Authorized Login</button>
-                    <button id="btnEmailSignUp" class="auth-btn auth-btn-secondary">Provision Account</button>
-                </div>
-                <div class="auth-divider">OR SECURE SIGN-IN WITH PROVIDERS</div>
-                <div>
-                    <button id="btnGoogleLogin" class="auth-btn auth-btn-google">🌐 Sign in with Google Account</button>
-                </div>
-            </div>
+           <!-- FIREBASE AUTHENTICATION INTERFACE MODULE -->
+<div id="authGate" class="auth-gate-box" style="position: relative;">
+    
+    <!-- 🔄 Loading Spinner Overlay -->
+    <div id="authLoadingOverlay" class="auth-loading-overlay hidden">
+        <div class="spinner"></div>
+        <p style="color: var(--cyan); margin-top: 15px; font-weight: bold; letter-spacing: 1px;">VALIDATING CREDENTIALS...</p>
+    </div>
+
+    <h3>🔒 Security Access Authorization Required</h3>
+    <p class="auth-gate-desc">You must sign into an operational engine identity before submitting infrastructure clearing hashes.</p>
+    
+    <div class="auth-input-group">
+        <input type="email" id="authEmail" placeholder="Operational Email Address">
+        <input type="password" id="authPassword" placeholder="Security Password">
+    </div>
+    
+    <div class="auth-action-row">
+        <!-- Added your main theme classes here for beautiful styling -->
+        <button id="btnEmailLogin" class="btn" style="background: var(--purple); border: none;">Authorized Login</button>
+        <button id="btnEmailSignUp" class="btn" style="background: transparent; border: 1px solid #1e293b; color: #94a3b8;">Provision Account</button>
+    </div>
+    <div class="auth-divider" style="margin: 15px 0; color: #475569; font-size: 0.85rem; text-align: center;">OR SECURE SIGN-IN WITH PROVIDERS</div>
+    <div style="text-align: center;">
+        <button id="btnGoogleLogin" class="btn" style="background: #4285F4; border: none; width: 100%;">🌐 Sign in with Google Account</button>
+    </div>
+</div>
 
             <!-- LOGGED-IN SESSION STATUS HEADER -->
             <div id="userStatusBanner" class="user-status-banner hidden">
