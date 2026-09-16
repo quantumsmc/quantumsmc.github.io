@@ -1,3 +1,7 @@
+// ==========================================================================
+// 📊 PART 1: CORE INTERACTION ENGINE - CLIPBOARD UTILITIES & VIEW TOGGLES
+// ==========================================================================
+
 document.addEventListener("DOMContentLoaded", () => {
     //--- Master Element Selectors Matrix
     const secureForm = document.getElementById("secureForm");
@@ -62,6 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+// ==========================================================================
+// 📊 PART 2: UI VIEWPORT LIGHTBOX MODALS & SECURE PAYLOAD COMPILATION
+// ==========================================================================
 
     //--- 📊 Same-Page Chart & QR Lightbox Modals Zoom Engine
     if (tvWrapper) {
@@ -78,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // New Event Trigger Hooks to intercept clicks on QR code elements
+    // Event Trigger Hooks to intercept clicks on QR code elements
     if (trcQrWrapper) {
         trcQrWrapper.addEventListener("click", () => {
             popupModalImage.src = "qr_trc20.png";
@@ -127,8 +134,15 @@ document.addEventListener("DOMContentLoaded", () => {
             visiblePayload += `Cryptographic Transaction ID: ${txid}\n`;
             visiblePayload += `Chronological Indexing Priority Log: Confirmed`;
             
-            modalDataText.innerText = visiblePayload;
-            successModal.style.display = "flex";
+            // Check for modal element existence to safeguard compilation
+            if (modalDataText && successModal) {
+                modalDataText.innerText = visiblePayload;
+                successModal.style.display = "flex";
+            } else {
+                // Failback trace log if successModal nodes are missing inside your HTML layout
+                console.log("Compiled System Payload:\n", visiblePayload);
+                alert("🚀 Request Form Compiled! Operational team notifying loop ongoing.");
+            }
         });
     }
 
@@ -138,17 +152,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    successModal.addEventListener("click", (e) => {
-        if (e.target === successModal) {
-            successModal.style.display = "none";
-        }
-    });
+    if (successModal) {
+        successModal.addEventListener("click", (e) => {
+            if (e.target === successModal) {
+                successModal.style.display = "none";
+            }
+        });
+    }
 
     //--- Global Escape Window Key Hook Interceptor
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
-            successModal.style.display = "none";
-            imageViewerModal.style.display = "none";
+            if (successModal) successModal.style.display = "none";
+            if (imageViewerModal) imageViewerModal.style.display = "none";
         }
     });
 

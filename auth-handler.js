@@ -1,4 +1,7 @@
-// 1. FIXED: Corrected full CDN links to load Firebase library packages smoothly
+// ==========================================================================
+// ⚙️ PART 1: CORE MODULE CDN NETWORK INITIALIZATION & RUNTIME ENVIRONMENT
+// ==========================================================================
+
 import { initializeApp } from "https://gstatic.com";
 import { 
     getAuth, 
@@ -10,10 +13,10 @@ import {
     onAuthStateChanged 
 } from "https://gstatic.com";
 
-// 2. FIXED: Fully restored your exact active Firebase configuration values
+// Your verified configurations from the Firebase UI console
 const firebaseConfig = {
     apiKey: "AIzaSyCRTta-0pkDxip31yXtlwH_FJIi2Ze3hRw",
-    authDomain: "quantumsmc01.firebaseapp.com", // Fixed missing prefix string
+    authDomain: "quantumsmc01.firebaseapp.com",
     projectId: "quantumsmc01",
     storageBucket: "quantumsmc01.firebasestorage.app",
     messagingSenderId: "417085121991",
@@ -51,7 +54,7 @@ function stopLoading() {
     if (loadingOverlay) loadingOverlay.classList.add('hidden'); 
 }
 
-// State Machine Listener
+// State Machine Listener (Monitors persistent user security access loops)
 onAuthStateChanged(auth, (user) => {
     stopLoading(); 
     if (user) {
@@ -70,6 +73,9 @@ onAuthStateChanged(auth, (user) => {
         activeUserEmail.innerText = "";
     }
 });
+// ==========================================================================
+// ⚙️ PART 2: AUTHENTICATION TRIGGER ACTIONS & ERROR MANAGEMENT HANDLERS
+// ==========================================================================
 
 // Create manual email login instances
 btnSignUp.addEventListener('click', () => {
@@ -83,7 +89,9 @@ btnSignUp.addEventListener('click', () => {
         .catch((err) => {
             stopLoading();
             if (err.code === 'auth/weak-password') {
-                alert("Security Reject: Password fails required parameters (minimum 6 characters for default Firebase).");
+                alert("Security Reject: Password fails required institutional parameters (Check your custom console rules).");
+            } else if (err.code === 'auth/email-already-in-use') {
+                alert("Identity Error: An account with this operational email address already exists.");
             } else {
                 alert("Provisioning Interrupted: " + err.message);
             }
@@ -104,12 +112,12 @@ btnLogin.addEventListener('click', () => {
         });
 });
 
-// 3. FIXED: Restored completely missing broken block layout logic at end of code array
+// Manage Google cross-origin authorization popups
 btnGoogle.addEventListener('click', () => {
     startLoading();
     signInWithPopup(auth, googleProvider)
         .then((result) => {
-            console.log("Google Auth Success", result.user);
+            console.log("Google Cryptographic Auth Handshake Complete:", result.user.email);
         })
         .catch((err) => {
             stopLoading();
@@ -117,7 +125,7 @@ btnGoogle.addEventListener('click', () => {
         });
 });
 
-// Process explicit system termination
+// Process explicit system session termination
 btnLogout.addEventListener('click', () => {
     startLoading();
     signOut(auth).catch((err) => {
