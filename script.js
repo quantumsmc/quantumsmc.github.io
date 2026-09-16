@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sendTgBtn.addEventListener("click", () => {
             const rawPayload = modalDataText.innerText;
             navigator.clipboard.writeText(rawPayload).then(() => {
-                window.open("https://t.me", '_blank');
+                window.open("https://t.me/aahil_exchange", '_blank');
             });
         });
     }
