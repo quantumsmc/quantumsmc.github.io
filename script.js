@@ -177,3 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+successModal.style.display = "flex";
+
