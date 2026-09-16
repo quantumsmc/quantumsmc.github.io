@@ -1,5 +1,5 @@
 // ==========================================================================
-// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - FULLY ALIGNED
+// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - ALIGNED & ENCAPSULATED
 // ==========================================================================
 
 // Helper functions to safely append global production libraries
@@ -22,7 +22,7 @@ Promise.all([
     // YOUR VERIFIED SECURE LIVE PRODUCTION KEY COMPILATION CONSOLE MATRIX
     const firebaseConfig = {
         apiKey: "AIzaSyCRTta-0pkDxip31yXtlwH_FJIi2Ze3hRw",
-        authDomain: "quantumsmc01.firebaseapp.com",
+        authDomain: "://firebaseapp.com",
         projectId: "quantumsmc01",
         storageBucket: "quantumsmc01.firebasestorage.app",
         messagingSenderId: "417085121991",
@@ -30,17 +30,17 @@ Promise.all([
         measurementId: "G-21DBPK6ZCH"
     };
 
-    // Initialize global compat engine layers
+    // Initialize global compat engine layers (🚀 Safe inside the loaded library block!)
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-    // DOM Target Assignments Matrix (⚠️ CORRECTION: Aligned IDs directly with index.html)
+    // DOM Target Assignments Matrix
     const emailInput = document.getElementById('authEmail');
     const passwordInput = document.getElementById('authPassword');
     const btnLogin = document.getElementById('btnEmailLogin');
     const btnSignUp = document.getElementById('btnEmailSignUp');
-    const btnGoogle = document.getElementById('btnGoogleLogin'); // Fixed from 'btnGoogle'
+    const btnGoogle = document.getElementById('btnGoogleLogin'); 
     const btnLogout = document.getElementById('btnSystemLogout');
 
     const authGate = document.getElementById('authGate');
@@ -103,7 +103,7 @@ Promise.all([
         });
     }
 
-    // Google Secure OAuth Popup Layer Handshake Hook (🚀 NOW OPERATIONAL)
+    // Google Secure OAuth Popup Layer Handshake Hook
     if (btnGoogle) {
         btnGoogle.addEventListener('click', () => {
             startLoading();
