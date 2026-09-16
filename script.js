@@ -1,9 +1,4 @@
-// ==========================================================================
-// 📊 QUANTUM SMC CENTRAL ENGINE - REPAIRED DISPATCH LOGIC (NO ALERTS)
-// ==========================================================================
-
 document.addEventListener("DOMContentLoaded", () => {
-    //--- Master Element Selectors Matrix
     const secureForm = document.getElementById("secureForm");
     const tvWrapper = document.getElementById("tvWrapper");
     const mt5Wrapper = document.getElementById("mt5Wrapper");
@@ -14,11 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeImgBtn = document.getElementById("closeImgBtn");
     const closeSecBtn = document.getElementById("closeSecBtn");
 
-    // NEW TARGET CHANNELS SELECTORS MATCHING THE CHOICE BUTTONS
     const sendTgBtn = document.getElementById("sendTgBtn");
     const sendEmailBtn = document.getElementById("sendEmailBtn");
 
-    //--- QR Code Selection Subsystems Nodes
     const copyTrcRow = document.getElementById("copyTrcRow");
     const copyBepRow = document.getElementById("copyBepRow");
     const toggleTrcQrBtn = document.getElementById("toggleTrcQrBtn");
@@ -26,11 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const trcQrWrapper = document.getElementById("trcQrWrapper");
     const bepQrWrapper = document.getElementById("bepQrWrapper");
 
-    // Clear background structures cleanly on asset reload execution loops
+    // Force default clean UI layouts
     if (successModal) successModal.style.display = "none";
     if (imageViewerModal) imageViewerModal.style.display = "none";
 
-    //--- 📋 Click Rows Instant Clipboard Actions Engine
+    // Clipboard handlers
     if (copyTrcRow) {
         copyTrcRow.addEventListener("click", () => {
             const trcAddress = document.getElementById("trcAddrText").innerText;
@@ -45,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    //--- 🖼️ QR Image Drawer Toggles Array Animation Controls
+    // QR Image Drawer Toggle Controllers
     if (toggleTrcQrBtn && trcQrWrapper) {
         toggleTrcQrBtn.addEventListener("click", () => {
             if (trcQrWrapper.style.display === "flex") {
@@ -70,54 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    //--- 📊 Same-Page Chart & QR Lightbox Modals Zoom Engine
-    if (tvWrapper) {
-        tvWrapper.addEventListener("click", () => {
-            popupModalImage.src = "chart_sample.png";
-            imageViewerModal.style.display = "flex";
-        });
-    }
-
-    if (mt5Wrapper) {
-        mt5Wrapper.addEventListener("click", () => {
-            popupModalImage.src = "mt5_sample.png";
-            imageViewerModal.style.display = "flex";
-        });
-    }
-
-    if (trcQrWrapper) {
-        trcQrWrapper.addEventListener("click", () => {
-            popupModalImage.src = "qr_trc20.png";
-            imageViewerModal.style.display = "flex";
-        });
-    }
-
-    if (bepQrWrapper) {
-        bepQrWrapper.addEventListener("click", () => {
-            popupModalImage.src = "qr_bep20.png";
-            imageViewerModal.style.display = "flex";
-        });
-    }
-
-    if (closeImgBtn) {
-        closeImgBtn.addEventListener("click", () => {
-            imageViewerModal.style.display = "none";
-        });
-    }
-
-    if (imageViewerModal) {
-        imageViewerModal.addEventListener("click", (e) => {
-            if (e.target === imageViewerModal) {
-                imageViewerModal.style.display = "none";
-            }
-        });
-    }
-
-    //--- 📝 Registration Verification Form Data Processors
+    // Form compilers and submission handlers
     if (secureForm) {
         secureForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            
             const name = document.getElementById("name").value;
             const email = document.getElementById("email").value;
             const platform = document.getElementById("platform").value;
@@ -142,60 +91,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Modal termination actions
     if (closeSecBtn) {
         closeSecBtn.addEventListener("click", () => {
             successModal.style.display = "none";
         });
     }
 
-    if (successModal) {
-        successModal.addEventListener("click", (e) => {
-            if (e.target === successModal) {
-                successModal.style.display = "none";
-            }
-        });
-    }
-
-    //--- Global Escape Window Key Hook Interceptor
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-            if (successModal) successModal.style.display = "none";
-            if (imageViewerModal) imageViewerModal.style.display = "none";
-        }
-    });
-
-    // 🚀 DUAL LISTENERS - SILENT DISPATCH ARCHITECTURE (ALERTS REMOVED)
+    // Dual action handlers routing silently to channels
     if (sendTgBtn) {
         sendTgBtn.addEventListener("click", () => {
             const rawPayload = modalDataText.innerText;
             navigator.clipboard.writeText(rawPayload).then(() => {
-                // Instantly opens Telegram window without throwing any grey alert popups
-                window.open("https://t.me/aahil_exchange", '_blank');
-            });
-        });
-    }
-
-    if (sendEmailBtn) {
-        sendEmailBtn.addEventListener("click", () => {
-            const rawPayload = modalDataText.innerText;
-            navigator.clipboard.writeText(rawPayload).then(() => {
-                // Instantly launches local mail application field components silently
-                const emailTarget = "realtimecooder@gmail.com";
-                const emailSubject = encodeURIComponent("Quantum SMC License Deployment Verification Hash");
-                const emailBody = encodeURIComponent(rawPayload);
-                
-                window.open(`mailto:${emailTarget}?subject=${emailSubject}&body=${emailBody}`, '_blank');
-            });
-        });
-    }
-});
-
-    // 🚀 DUAL ACTION CONTROLLER - SILENT GITHUB PAGES PRODUCTION MATRIX
-    if (sendTgBtn) {
-        sendTgBtn.addEventListener("click", () => {
-            const rawPayload = modalDataText.innerText;
-            navigator.clipboard.writeText(rawPayload).then(() => {
-                // Instantly opens Telegram window silently without throwing grey popups
                 window.open("https://t.me", '_blank');
             });
         });
@@ -205,11 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
         sendEmailBtn.addEventListener("click", () => {
             const rawPayload = modalDataText.innerText;
             navigator.clipboard.writeText(rawPayload).then(() => {
-                // Instantly launches local mail application field components silently
                 const emailTarget = "realtimecooder@gmail.com";
                 const emailSubject = encodeURIComponent("Quantum SMC License Deployment Verification Hash");
                 const emailBody = encodeURIComponent(rawPayload);
-                
                 window.open(`mailto:${emailTarget}?subject=${emailSubject}&body=${emailBody}`, '_blank');
             });
         });
