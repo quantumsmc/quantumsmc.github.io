@@ -608,5 +608,16 @@ h1 {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+/* ==========================================================================
+   🚨 OVERRIDE SYSTEM OVERLAPS - GLASS WALL LAYOUT CORRECTION
+   ========================================================================== */
+
+/* This rule forces un-authenticated components to completely vanish, removing them from the page track layout */
+.hidden { 
+    display: none !important; 
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: -9999 !important;
+}
 
 successModal.style.display = "flex";
