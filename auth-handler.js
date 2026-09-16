@@ -1,113 +1,121 @@
 // ==========================================================================
-// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - STREAMLINED CORE
+// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - EVENT BUFFERED
 // ==========================================================================
 
-// YOUR VERIFIED SECURE LIVE PRODUCTION KEY COMPILATION CONSOLE MATRIX
-const firebaseConfig = {
-    apiKey: "AIzaSyCRTta-0pkDxip31yXtlwH_FJIi2Ze3hRw",
-    authDomain: "://firebaseapp.com",
-    projectId: "quantumsmc01",
-    storageBucket: "quantumsmc01.firebasestorage.app",
-    messagingSenderId: "417085121991",
-    appId: "1:417085121991:web:ffb27be73984b021bb65e2",
-    measurementId: "G-21DBPK6ZCH"
-};
+// Ensure all HTML DOM nodes are structurally present before mapping events
+document.addEventListener("DOMContentLoaded", () => {
 
-// Initialize global compat engine layers securely
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const googleProvider = new firebase.auth.GoogleAuthProvider();
+    // YOUR VERIFIED SECURE LIVE PRODUCTION KEY COMPILATION CONSOLE MATRIX
+    const firebaseConfig = {
+        apiKey: "AIzaSyCRTta-0pkDxip31yXtlwH_FJIi2Ze3hRw",
+        authDomain: "://firebaseapp.com",
+        projectId: "quantumsmc01",
+        storageBucket: "quantumsmc01.firebasestorage.app",
+        messagingSenderId: "417085121991",
+        appId: "1:417085121991:web:ffb27be73984b021bb65e2",
+        measurementId: "G-21DBPK6ZCH"
+    };
 
-// DOM Target Assignments Matrix
-const emailInput = document.getElementById('authEmail');
-const passwordInput = document.getElementById('authPassword');
-const btnLogin = document.getElementById('btnEmailLogin');
-const btnSignUp = document.getElementById('btnEmailSignUp');
-const btnGoogle = document.getElementById('btnGoogleLogin'); 
-const btnLogout = document.getElementById('btnSystemLogout');
+    // Initialize global compat engine layers securely after confirming SDK context
+    if (typeof firebase !== 'undefined') {
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-const authGate = document.getElementById('authGate');
-const gatedFormContent = document.getElementById('gatedFormContent');
-const userStatusBanner = document.getElementById('userStatusBanner');
-const activeUserEmail = document.getElementById('activeUserEmail');
-const registrationEmailField = document.getElementById('email');
-const loadingOverlay = document.getElementById('authLoadingOverlay');
+        // DOM Target Assignments Matrix
+        const emailInput = document.getElementById('authEmail');
+        const passwordInput = document.getElementById('authPassword');
+        const btnLogin = document.getElementById('btnEmailLogin');
+        const btnSignUp = document.getElementById('btnEmailSignUp');
+        const btnGoogle = document.getElementById('btnGoogleLogin'); 
+        const btnLogout = document.getElementById('btnSystemLogout');
 
-function startLoading() { if (loadingOverlay) loadingOverlay.classList.remove('hidden'); }
-function stopLoading() { if (loadingOverlay) loadingOverlay.classList.add('hidden'); }
+        const authGate = document.getElementById('authGate');
+        const gatedFormContent = document.getElementById('gatedFormContent');
+        const userStatusBanner = document.getElementById('userStatusBanner');
+        const activeUserEmail = document.getElementById('activeUserEmail');
+        const registrationEmailField = document.getElementById('email');
+        const loadingOverlay = document.getElementById('authLoadingOverlay');
 
-// Persistent State Change Tracking Thread Loop
-auth.onAuthStateChanged((user) => {
-    stopLoading(); 
-    if (user) {
-        if (authGate) authGate.classList.add('hidden');
-        if (userStatusBanner) userStatusBanner.classList.remove('hidden');
-        if (gatedFormContent) gatedFormContent.classList.remove('hidden');
-        if (activeUserEmail) activeUserEmail.innerText = user.email;
-        if (registrationEmailField) registrationEmailField.value = user.email;
+        function startLoading() { if (loadingOverlay) loadingOverlay.classList.remove('hidden'); }
+        function stopLoading() { if (loadingOverlay) loadingOverlay.classList.add('hidden'); }
+
+        // Persistent State Change Tracking Thread Loop
+        auth.onAuthStateChanged((user) => {
+            stopLoading(); 
+            if (user) {
+                if (authGate) authGate.classList.add('hidden');
+                if (userStatusBanner) userStatusBanner.classList.remove('hidden');
+                if (gatedFormContent) gatedFormContent.classList.remove('hidden');
+                if (activeUserEmail) activeUserEmail.innerText = user.email;
+                if (registrationEmailField) registrationEmailField.value = user.email;
+            } else {
+                if (authGate) authGate.classList.remove('hidden');
+                if (userStatusBanner) userStatusBanner.classList.add('hidden');
+                if (gatedFormContent) gatedFormContent.classList.add('hidden');
+                if (activeUserEmail) activeUserEmail.innerText = "";
+            }
+        });
+
+        // Custom Profile Credentials Verification Submit Trigger
+        if (btnSignUp) {
+            btnSignUp.addEventListener('click', () => {
+                const email = emailInput.value;
+                const password = passwordInput.value;
+                if (!email || !password) return alert("Please fill out both the email and password fields.");
+                
+                startLoading();
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then(() => alert("Access profile created successfully! The checkout gates are unlocked."))
+                    .catch((err) => {
+                        stopLoading();
+                        alert("Registration Error: " + err.message);
+                    });
+            });
+        }
+
+        // Standard Sign In Form Array Core Interception
+        if (btnLogin) {
+            btnLogin.addEventListener('click', () => {
+                const email = emailInput.value;
+                const password = passwordInput.value;
+                if (!email || !password) return alert("Fields cannot remain empty.");
+
+                startLoading();
+                auth.signInWithEmailAndPassword(email, password)
+                    .catch((err) => {
+                        stopLoading();
+                        alert("Authorization Rejected: " + err.message);
+                    });
+            });
+        }
+
+        // Google Secure OAuth Popup Layer Handshake Hook
+        if (btnGoogle) {
+            btnGoogle.addEventListener('click', () => {
+                startLoading();
+                auth.signInWithPopup(googleProvider)
+                    .then((result) => {
+                        console.log("Google Cryptographic Handshake Successful:", result.user);
+                    })
+                    .catch((err) => {
+                        stopLoading();
+                        alert("Handshake Cancelled or Failed: " + err.message);
+                    });
+            });
+        }
+
+        // Active Global Session Termination Sequence Control
+        if (btnLogout) {
+            btnLogout.addEventListener('click', () => {
+                startLoading();
+                auth.signOut().catch((err) => {
+                    stopLoading();
+                    alert("Termination fault: " + err.message);
+                });
+            });
+        }
     } else {
-        if (authGate) authGate.classList.remove('hidden');
-        if (userStatusBanner) userStatusBanner.classList.add('hidden');
-        if (gatedFormContent) gatedFormContent.classList.add('hidden');
-        if (activeUserEmail) activeUserEmail.innerText = "";
+        console.error("Critical System Interruption: Global firebase object is unavailable.");
     }
 });
-
-// Custom Profile Credentials Verification Submit Trigger
-if (btnSignUp) {
-    btnSignUp.addEventListener('click', () => {
-        const email = emailInput.value;
-        const password = passwordInput.value;
-        if (!email || !password) return alert("Please fill out both the email and password fields.");
-        
-        startLoading();
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(() => alert("Access profile created successfully! The checkout gates are unlocked."))
-            .catch((err) => {
-                stopLoading();
-                alert("Registration Error: " + err.message);
-            });
-    });
-}
-
-// Standard Sign In Form Array Core Interception
-if (btnLogin) {
-    btnLogin.addEventListener('click', () => {
-        const email = emailInput.value;
-        const password = passwordInput.value;
-        if (!email || !password) return alert("Fields cannot remain empty.");
-
-        startLoading();
-        auth.signInWithEmailAndPassword(email, password)
-            .catch((err) => {
-                stopLoading();
-                alert("Authorization Rejected: " + err.message);
-            });
-    });
-}
-
-// Google Secure OAuth Popup Layer Handshake Hook
-if (btnGoogle) {
-    btnGoogle.addEventListener('click', () => {
-        startLoading();
-        auth.signInWithPopup(googleProvider)
-            .then((result) => {
-                console.log("Google Cryptographic Handshake Successful:", result.user);
-            })
-            .catch((err) => {
-                stopLoading();
-                alert("Handshake Cancelled or Failed: " + err.message);
-            });
-    });
-}
-
-// Active Global Session Termination Sequence Control
-if (btnLogout) {
-    btnLogout.addEventListener('click', () => {
-        startLoading();
-        auth.signOut().catch((err) => {
-            stopLoading();
-            alert("Termination fault: " + err.message);
-        });
-    });
-}
