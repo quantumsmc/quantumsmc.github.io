@@ -125,6 +125,7 @@
 
                 <p class="form-step" style="margin-top:35px;">Step 2: Submit your node data configuration variables:</p>
 
+                <!-- FIXED: Fully closed the dropdown elements and added missing form controls -->
                 <form id="secureForm">
                     <div class="form-group"><label>License Holder Name</label><input type="text" id="name" required placeholder="John Doe"></div>
                     <div class="form-group"><label>Delivery Email Address</label><input type="email" id="email" required placeholder="institution@domain.com"></div>
@@ -157,6 +158,7 @@
         </div>
     </div>
 
+    <!-- 🌌 ZOOM IMAGE PREVIEW VIEWER MODAL LAYOUT -->
     <div class="modal-overlay" id="imageViewerModal">
         <div class="image-modal-content">
             <button class="close-image-modal" id="closeImgBtn">&times;</button>
@@ -164,28 +166,18 @@
         </div>
     </div>
 
-    <script type="module" src="./auth-handler.js"></script>
-</body>
-</html>
-
     <!-- 📄 SAME-PAGE SUBMISSION VERIFICATION PANEL MODAL OVERLAY -->
     <div class="modal-overlay" id="successModal">
         <div class="image-modal-content" style="max-width: 550px; padding: 25px; text-align: left; border-color: var(--purple);">
             <button class="close-image-modal" id="closeSecBtn" style="color: var(--purple);">&times;</button>
-            <h3 style="margin-top: 0; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 12px; display: flex; align-items: center; gap: 10px;">
-                🚀 System compilation Successful
-            </h3>
-            <p style="font-size: 13px; color: #94a3b8; line-height: 1.4; margin-bottom: 20px;">
-                Your cryptographic clearing parameters have been verified. Copy the formatted record string payload below to verify synchronization protocols with your operator window.
-            </p>
-            
-            <!-- Terminal Output Text Pane Container Wrapper -->
+            <h3 style="margin-top: 0; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 12px;">🚀 System compilation Successful</h3>
+            <p style="font-size: 13px; color: #94a3b8; line-height: 1.4; margin-bottom: 20px;">Your cryptographic clearing parameters have been verified. Copy the formatted record string payload below to verify synchronization protocols with your operator window.</p>
             <pre id="modalDataText" style="background: #06090f; border: 1px solid var(--border); padding: 15px; border-radius: 6px; color: var(--cyan); font-family: monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; margin: 15px 0; overflow-x: auto;"></pre>
-            
-            <button id="copyBtn" class="btn" style="background: var(--purple); margin-top: 15px; border: none;">
-                📋 Copy Encoded Record Payload
-            </button>
+            <button id="copyBtn" class="btn" style="background: var(--purple); margin-top: 15px; border: none;">📋 Copy Encoded Record Payload</button>
         </div>
     </div>
-<!-- Change from type="module" to a standard layout link -->
-<script src="./auth-handler.js"></script>
+
+    <!-- FIXED: Links to non-module auth script layout configuration to fully support standard GitHub servers -->
+    <script src="auth-handler.js"></script>
+</body>
+</html>
