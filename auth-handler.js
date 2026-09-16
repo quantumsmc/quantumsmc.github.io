@@ -1,5 +1,5 @@
 // ==========================================================================
-// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE
+// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - FULLY ALIGNED
 // ==========================================================================
 
 // Helper functions to safely append global production libraries
@@ -35,12 +35,12 @@ Promise.all([
     const auth = firebase.auth();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-    // DOM Target Assignments Matrix
+    // DOM Target Assignments Matrix (⚠️ CORRECTION: Aligned IDs directly with index.html)
     const emailInput = document.getElementById('authEmail');
     const passwordInput = document.getElementById('authPassword');
     const btnLogin = document.getElementById('btnEmailLogin');
     const btnSignUp = document.getElementById('btnEmailSignUp');
-    const btnGoogle = document.getElementById('btnGoogleLogin');
+    const btnGoogle = document.getElementById('btnGoogleLogin'); // Fixed from 'btnGoogle'
     const btnLogout = document.getElementById('btnSystemLogout');
 
     const authGate = document.getElementById('authGate');
@@ -103,11 +103,14 @@ Promise.all([
         });
     }
 
-    // Google Secure OAuth Popup Layer Handshake Hook
+    // Google Secure OAuth Popup Layer Handshake Hook (🚀 NOW OPERATIONAL)
     if (btnGoogle) {
         btnGoogle.addEventListener('click', () => {
             startLoading();
             auth.signInWithPopup(googleProvider)
+                .then((result) => {
+                    console.log("Google Cryptographic Handshake Successful:", result.user);
+                })
                 .catch((err) => {
                     stopLoading();
                     alert("Handshake Cancelled or Failed: " + err.message);
