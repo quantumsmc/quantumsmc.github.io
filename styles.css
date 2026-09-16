@@ -471,3 +471,130 @@ input, select { width: 100%; padding: 12px 10px; border-radius: 5px; border: 1px
 .qr-modal-override {
     max-width: 400px !important;
 }
+
+### Part 2: Custom Authentication Styles (`styles.css` Addition)
+Append these rules directly to the bottom of your existing `styles.css` file to seamlessly integrate the UI components.
+
+```css
+/* ==========================================================================
+   QUANTUM AUTHENTICATION INJECTED MODULE
+   ========================================================================== */
+.hidden { 
+    display: none !important; 
+}
+
+.auth-gate-box {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px dashed #3b82f6;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.auth-gate-box h3 { 
+    margin-top: 0; 
+    color: #ffffff; 
+    font-size: 1.4rem; 
+}
+
+.auth-gate-desc {
+    color: #94a3b8; 
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.auth-input-group { 
+    display: flex; 
+    gap: 10px; 
+    max-width: 500px; 
+    margin: 15px auto; 
+}
+
+.auth-input-group input {
+    flex: 1; 
+    padding: 12px; 
+    background: #0b0f19; 
+    border: 1px solid #1e293b;
+    color: #ffffff; 
+    border-radius: 4px; 
+    outline: none;
+    font-size: 0.95rem;
+}
+
+.auth-input-group input:focus { 
+    border-color: var(--cyan, #00f0ff); 
+}
+
+.auth-action-row { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; 
+    margin-top: 15px; 
+}
+
+.auth-btn {
+    padding: 10px 20px; 
+    border-radius: 4px; 
+    border: none; 
+    font-weight: bold;
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.auth-btn-primary { 
+    background: var(--purple, #a855f7); 
+    color: #ffffff; 
+}
+
+.auth-btn-secondary { 
+    background: transparent; 
+    border: 1px solid #1e293b; 
+    color: #94a3b8; 
+}
+
+.auth-btn-google { 
+    background: #4285F4; 
+    color: #ffffff; 
+    width: 100%;
+    max-width: 500px;
+}
+
+.auth-btn:hover { 
+    opacity: 0.9; 
+    transform: translateY(-1px); 
+}
+
+.auth-divider {
+    margin: 20px 0; 
+    color: #475569; 
+    font-size: 0.85rem; 
+    letter-spacing: 1px;
+}
+
+.user-status-banner {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    background: rgba(16, 185, 129, 0.1); 
+    border: 1px solid #10b981;
+    padding: 12px 20px; 
+    border-radius: 6px; 
+    margin-bottom: 25px; 
+    font-size: 0.95rem;
+}
+
+#activeUserEmail {
+    color: #ffffff;
+}
+
+.logout-link { 
+    color: #f43f5e; 
+    text-decoration: underline; 
+    cursor: pointer; 
+    background: none; 
+    border: none; 
+    font-size: 0.95rem;
+    font-weight: bold;
+}
