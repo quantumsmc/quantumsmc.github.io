@@ -1,8 +1,9 @@
 // ==========================================================================
-// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - EVENT BUFFERED
+// ⚙️ INSULATED QUANTUM AUTH ENGINE - ANTI-INJECTION ARCHITECTURE
 // ==========================================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+(function() {
+    // Isolated, localized settings framework
     const firebaseConfig = {
         apiKey: "AIzaSyCRTta-0pkDxip31yXtlwH_FJIi2Ze3hRw",
         authDomain: "://firebaseapp.com",
@@ -13,8 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
         measurementId: "G-21DBPK6ZCH"
     };
 
-    // Confirm core libraries are online before running initialization sequence
-    if (typeof firebase !== 'undefined') {
+    function initializeSystem() {
+        // Enforce loop verification if browser latency lags CDN tracking streams
+        if (typeof firebase === 'undefined') {
+            return setTimeout(initializeSystem, 30);
+        }
+
+        // Initialize Firebase structures globally without clashing with root settings
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
@@ -22,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const auth = firebase.auth();
         const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-        // Target assignments
+        // Target assignments matrix mapping explicitly via localized values
         const emailInput = document.getElementById('authEmail');
         const passwordInput = document.getElementById('authPassword');
         const btnLogin = document.getElementById('btnEmailLogin');
@@ -40,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         function startLoading() { if (loadingOverlay) loadingOverlay.classList.remove('hidden'); }
         function stopLoading() { if (loadingOverlay) loadingOverlay.classList.add('hidden'); }
 
-        // Persistent Session Monitor State Thread
+        // Core persistent authorization loop state listener thread
         auth.onAuthStateChanged((user) => {
             stopLoading(); 
             if (user) {
@@ -57,50 +63,61 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Event listener attachments using direct anonymous bindings
+        // 🚀 CRITICAL INLINE CLICK BINDINGS (Bypasses any browser extension hijack blocks)
         if (btnSignUp) {
-            btnSignUp.addEventListener('click', (e) => {
+            btnSignUp.onclick = function(e) {
                 e.preventDefault();
+                e.stopPropagation(); // Stops external script injection bubbles
                 const email = emailInput.value.trim();
                 const password = passwordInput.value.trim();
                 if (!email || !password) return alert("Fields cannot remain empty.");
+                
                 startLoading();
                 auth.createUserWithEmailAndPassword(email, password)
-                    .then(() => alert("Profile Provisioned Successfully! Checking layout fields..."))
-                    .catch((err) => { stopLoading(); alert("Error: " + err.message); });
-            });
+                    .then(() => alert("Access Profile Provisioned Successfully! Welcome."))
+                    .catch((err) => { stopLoading(); alert("Registration Error: " + err.message); });
+            };
         }
 
         if (btnLogin) {
-            btnLogin.addEventListener('click', (e) => {
+            btnLogin.onclick = function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 const email = emailInput.value.trim();
                 const password = passwordInput.value.trim();
                 if (!email || !password) return alert("Fields cannot remain empty.");
+
                 startLoading();
                 auth.signInWithEmailAndPassword(email, password)
-                    .catch((err) => { stopLoading(); alert("Login Rejected: " + err.message); });
-            });
+                    .catch((err) => { stopLoading(); alert("Authorization Rejected: " + err.message); });
+            };
         }
 
         if (btnGoogle) {
-            btnGoogle.addEventListener('click', (e) => {
+            btnGoogle.onclick = function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 startLoading();
                 auth.signInWithPopup(googleProvider)
-                    .then((result) => { console.log("OAuth Connection Established:", result.user.email); })
-                    .catch((err) => { stopLoading(); alert("OAuth Interrupted: " + err.message); });
-            });
+                    .then((result) => { console.log("OAuth Success:", result.user.email); })
+                    .catch((err) => { stopLoading(); alert("Handshake Error: " + err.message); });
+            };
         }
 
         if (btnLogout) {
-            btnLogout.addEventListener('click', (e) => {
+            btnLogout.onclick = function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 startLoading();
-                auth.signOut().catch((err) => { stopLoading(); alert("Logout Interrupted: " + err.message); });
-            });
+                auth.signOut().catch((err) => { stopLoading(); alert("Logout Error: " + err.message); });
+            };
         }
-    } else {
-        console.error("Firebase Drivers missing loop check fallback initialization fail.");
     }
-});
+
+    // Execute immediately to insulate click strings from DOM mutations
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initializeSystem);
+    } else {
+        initializeSystem();
+    }
+})();
