@@ -3,7 +3,7 @@
 // ==========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    //--- Master Element Selectors Matrix
+    // --- Master Element Selectors Matrix
     const secureForm = document.getElementById("secureForm");
     const tvWrapper = document.getElementById("tvWrapper");
     const mt5Wrapper = document.getElementById("mt5Wrapper");
@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeImgBtn = document.getElementById("closeImgBtn");
     const closeSecBtn = document.getElementById("closeSecBtn");
     const copyBtn = document.getElementById("copyBtn");
+
+    // 🚀 CRITICAL FIX: Explicitly hide the popup modals as soon as the page loads
+    if (successModal) successModal.style.display = "none";
+    if (imageViewerModal) imageViewerModal.style.display = "none";
+
 
     //--- QR Code Selection Subsystems Nodes
     const copyTrcRow = document.getElementById("copyTrcRow");
