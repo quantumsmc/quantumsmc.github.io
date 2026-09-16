@@ -189,3 +189,29 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+    // 🚀 DUAL ACTION CONTROLLER - SILENT GITHUB PAGES PRODUCTION MATRIX
+    if (sendTgBtn) {
+        sendTgBtn.addEventListener("click", () => {
+            const rawPayload = modalDataText.innerText;
+            navigator.clipboard.writeText(rawPayload).then(() => {
+                // Instantly opens Telegram window silently without throwing grey popups
+                window.open("https://t.me", '_blank');
+            });
+        });
+    }
+
+    if (sendEmailBtn) {
+        sendEmailBtn.addEventListener("click", () => {
+            const rawPayload = modalDataText.innerText;
+            navigator.clipboard.writeText(rawPayload).then(() => {
+                // Instantly launches local mail application field components silently
+                const emailTarget = "realtimecooder@gmail.com";
+                const emailSubject = encodeURIComponent("Quantum SMC License Deployment Verification Hash");
+                const emailBody = encodeURIComponent(rawPayload);
+                
+                window.open(`mailto:${emailTarget}?subject=${emailSubject}&body=${emailBody}`, '_blank');
+            });
+        });
+    }
+});
