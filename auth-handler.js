@@ -1,8 +1,8 @@
 // ==========================================================================
-// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - ISOLATED LAYER FIX
+// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - EVENT BUFFERED
 // ==========================================================================
 
-(function() {
+document.addEventListener("DOMContentLoaded", () => {
     const firebaseConfig = {
         apiKey: "AIzaSyCRTta-0pkDxip31yXtlwH_FJIi2Ze3hRw",
         authDomain: "://firebaseapp.com",
@@ -13,13 +13,16 @@
         measurementId: "G-21DBPK6ZCH"
     };
 
-    function startEngine() {
-        if (typeof firebase === 'undefined') return setTimeout(startEngine, 30);
-        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    // Confirm core libraries are online before running initialization sequence
+    if (typeof firebase !== 'undefined') {
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
         
         const auth = firebase.auth();
         const googleProvider = new firebase.auth.GoogleAuthProvider();
 
+        // Target assignments
         const emailInput = document.getElementById('authEmail');
         const passwordInput = document.getElementById('authPassword');
         const btnLogin = document.getElementById('btnEmailLogin');
@@ -37,6 +40,7 @@
         function startLoading() { if (loadingOverlay) loadingOverlay.classList.remove('hidden'); }
         function stopLoading() { if (loadingOverlay) loadingOverlay.classList.add('hidden'); }
 
+        // Persistent Session Monitor State Thread
         auth.onAuthStateChanged((user) => {
             stopLoading(); 
             if (user) {
@@ -53,42 +57,50 @@
             }
         });
 
+        // Event listener attachments using direct anonymous bindings
         if (btnSignUp) {
-            btnSignUp.onclick = function(e) {
+            btnSignUp.addEventListener('click', (e) => {
                 e.preventDefault();
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+                if (!email || !password) return alert("Fields cannot remain empty.");
                 startLoading();
-                auth.createUserWithEmailAndPassword(emailInput.value.trim(), passwordInput.value.trim())
-                    .then(() => alert("Access Profile Provisioned! Welcome."))
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then(() => alert("Profile Provisioned Successfully! Checking layout fields..."))
                     .catch((err) => { stopLoading(); alert("Error: " + err.message); });
-            };
+            });
         }
 
         if (btnLogin) {
-            btnLogin.onclick = function(e) {
+            btnLogin.addEventListener('click', (e) => {
                 e.preventDefault();
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+                if (!email || !password) return alert("Fields cannot remain empty.");
                 startLoading();
-                auth.signInWithEmailAndPassword(emailInput.value.trim(), passwordInput.value.trim())
-                    .catch((err) => { stopLoading(); alert("Error: " + err.message); });
-            };
+                auth.signInWithEmailAndPassword(email, password)
+                    .catch((err) => { stopLoading(); alert("Login Rejected: " + err.message); });
+            });
         }
 
         if (btnGoogle) {
-            btnGoogle.onclick = function(e) {
+            btnGoogle.addEventListener('click', (e) => {
                 e.preventDefault();
                 startLoading();
                 auth.signInWithPopup(googleProvider)
-                    .catch((err) => { stopLoading(); alert("Handshake Interrupted: " + err.message); });
-            };
+                    .then((result) => { console.log("OAuth Connection Established:", result.user.email); })
+                    .catch((err) => { stopLoading(); alert("OAuth Interrupted: " + err.message); });
+            });
         }
 
         if (btnLogout) {
-            btnLogout.onclick = function(e) {
+            btnLogout.addEventListener('click', (e) => {
                 e.preventDefault();
                 startLoading();
-                auth.signOut().catch((err) => { stopLoading(); alert("Error: " + err.message); });
-            };
+                auth.signOut().catch((err) => { stopLoading(); alert("Logout Interrupted: " + err.message); });
+            });
         }
+    } else {
+        console.error("Firebase Drivers missing loop check fallback initialization fail.");
     }
-
-    startEngine();
-})();
+});
