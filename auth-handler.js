@@ -118,5 +118,3 @@ Promise.all([
 }).catch(err => {
     console.error("Failed to load global Firebase libraries:", err);
 });
-
-successModal.style.display = "flex";
