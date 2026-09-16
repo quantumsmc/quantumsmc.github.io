@@ -1,12 +1,11 @@
 // ==========================================================================
-// ⚙️ QUANTUM SMC FIREBASE AUTH ENGINE - INSULATED HARD PRODUCTION COPY
+// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - BULLETPROOF DIRECT
 // ==========================================================================
 
 (function() {
-    // Verified production configuration matrices
     const firebaseConfig = {
         apiKey: "AIzaSyCRTta-0pkDxip31yXtlwH_FJIi2Ze3hRw",
-        authDomain: "quantumsmc01.firebaseapp.com",
+        authDomain: "://firebaseapp.com",
         projectId: "quantumsmc01",
         storageBucket: "quantumsmc01.firebasestorage.app",
         messagingSenderId: "417085121991",
@@ -14,27 +13,27 @@
         measurementId: "G-21DBPK6ZCH"
     };
 
-    function startEngine() {
-        // Enforce loop wait sequences if latency interrupts CDN tracking streams
+    function startAuthEngine() {
         if (typeof firebase === 'undefined') {
-            return setTimeout(startEngine, 30);
+            return setTimeout(startAuthEngine, 50);
         }
 
-        // Initialize Firebase structures globally
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
-        
+
         const auth = firebase.auth();
         const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-        // 🚀 BIND SYSTEM EVENT ATTRIBUTES DIRECTLY TO INTERACTION NODES
+        // Match elements securely
         const emailInput = document.getElementById('authEmail');
         const passwordInput = document.getElementById('authPassword');
-        const btnLogin = document.getElementById('btnEmailLogin');
-        const btnSignUp = document.getElementById('btnEmailSignUp');
-        const btnGoogle = document.getElementById('btnGoogleLogin'); 
-        const btnLogout = document.getElementById('btnSystemLogout');
+        
+        // Target assignments
+        const btnLogin = document.getElementById('btnEmailLogin') || document.getElementById('btnLogin');
+        const btnSignUp = document.getElementById('btnEmailSignUp') || document.getElementById('btnSignUp');
+        const btnGoogle = document.getElementById('btnGoogleLogin') || document.getElementById('btnGoogle'); 
+        const btnLogout = document.getElementById('btnSystemLogout') || document.getElementById('btnLogout');
 
         const authGate = document.getElementById('authGate');
         const gatedFormContent = document.getElementById('gatedFormContent');
@@ -46,7 +45,6 @@
         function startLoading() { if (loadingOverlay) loadingOverlay.classList.remove('hidden'); }
         function stopLoading() { if (loadingOverlay) loadingOverlay.classList.add('hidden'); }
 
-        // Persistent Session Authorization Tracker Thread Loop
         auth.onAuthStateChanged((user) => {
             stopLoading(); 
             if (user) {
@@ -63,17 +61,16 @@
             }
         });
 
-        // 📋 MANUALLY CONFIGURE DIRECT EVENT PROPERTIES TO OVERRIDE INTRUSIVE CLASHES
+        // Use direct inline override properties to stop file clashing
         if (btnSignUp) {
             btnSignUp.onclick = function(e) {
                 e.preventDefault();
                 const email = emailInput.value.trim();
                 const password = passwordInput.value.trim();
                 if (!email || !password) return alert("Please fill out both the email and password fields.");
-                
                 startLoading();
                 auth.createUserWithEmailAndPassword(email, password)
-                    .then(() => alert("Access profile created successfully! Check checkout fields below."))
+                    .then(() => alert("Access profile created successfully! Checkout forms unlocked."))
                     .catch((err) => { stopLoading(); alert("Registration Error: " + err.message); });
             };
         }
@@ -84,7 +81,6 @@
                 const email = emailInput.value.trim();
                 const password = passwordInput.value.trim();
                 if (!email || !password) return alert("Fields cannot remain empty.");
-
                 startLoading();
                 auth.signInWithEmailAndPassword(email, password)
                     .catch((err) => { stopLoading(); alert("Authorization Rejected: " + err.message); });
@@ -96,8 +92,8 @@
                 e.preventDefault();
                 startLoading();
                 auth.signInWithPopup(googleProvider)
-                    .then((result) => { console.log("OAuth Sync Handshake Complete:", result.user.email); })
-                    .catch((err) => { stopLoading(); alert("Handshake Cancelled or Failed: " + err.message); });
+                    .then((result) => { console.log("OAuth Success:", result.user.email); })
+                    .catch((err) => { stopLoading(); alert("Handshake Error: " + err.message); });
             };
         }
 
@@ -105,11 +101,15 @@
             btnLogout.onclick = function(e) {
                 e.preventDefault();
                 startLoading();
-                auth.signOut().catch((err) => { stopLoading(); alert("Termination fault: " + err.message); });
+                auth.signOut().catch((err) => { stopLoading(); alert("Logout Error: " + err.message); });
             };
         }
     }
 
-    // Instantly run the isolated execution thread
-    startEngine();
+    // Execute immediately to override structural layout blocks
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startAuthEngine);
+    } else {
+        startAuthEngine();
+    }
 })();
