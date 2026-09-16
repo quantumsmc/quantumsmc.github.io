@@ -182,7 +182,6 @@ h1 {
 .close-image-modal:hover {
     color: #fff;
 }
-
 .address-card-container {
     background: rgba(6, 9, 15, 0.4);
     border: 1px solid var(--border);
@@ -273,6 +272,7 @@ h1 {
     object-fit: contain;
     display: block;
 }
+
 .promo-banner {
     background: linear-gradient(135deg, rgba(157, 78, 221, 0.15) 0%, rgba(0, 243, 255, 0.15) 100%);
     border: 2px solid var(--cyan);
@@ -509,115 +509,3 @@ h1 {
     padding: 20px;
     box-sizing: border-box;
 }
-
-/* ==========================================================================
-   🛡️ FIREBASE AUTHENTICATION INTERFACE UI EXTRA ADDITIONS
-   ========================================================================== */
-
-.hidden { display: none !important; }
-
-.auth-gate-box {
-    background: rgba(13, 19, 31, 0.95);
-    border: 1px dashed var(--cyan);
-    padding: 30px;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-.auth-gate-box h3 { margin-top: 0; color: #ffffff; font-size: 1.3rem; }
-
-.auth-gate-desc {
-    color: #94a3b8; 
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-    line-height: 1.4;
-}
-
-.auth-input-group { 
-    display: flex; 
-    flex-direction: column;
-    gap: 12px; 
-    max-width: 100%; 
-    margin: 15px auto; 
-}
-
-.auth-input-group input {
-    width: 100%;
-    padding: 12px; 
-    background: #06090f; 
-    border: 1px solid var(--border);
-    color: #ffffff; 
-    border-radius: 6px; 
-    outline: none;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-.auth-input-group input:focus { border-color: var(--cyan); }
-.auth-action-row { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
-.auth-divider { margin: 20px 0; color: #475569; font-size: 0.8rem; letter-spacing: 1px; }
-
-.user-status-banner {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    background: rgba(16, 185, 129, 0.08); 
-    border: 1px solid #10b981;
-    padding: 12px 20px; 
-    border-radius: 6px; 
-    margin-bottom: 25px; 
-    font-size: 14px;
-}
-
-.logout-link { 
-    color: #f43f5e; 
-    text-decoration: underline; 
-    cursor: pointer; 
-    background: none; 
-    border: none; 
-    font-size: 14px;
-    font-weight: bold;
-    padding: 0;
-}
-
-.auth-loading-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(6, 9, 15, 0.95);
-    backdrop-filter: blur(4px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    border-radius: 8px;
-}
-
-.spinner {
-    width: 45px;
-    height: 45px;
-    border: 3px solid rgba(0, 243, 255, 0.1);
-    border-top: 3px solid var(--cyan);
-    border-radius: 50%;
-    animation: quantumSpin 0.8s linear infinite;
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
-}
-
-@keyframes quantumSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-/* ==========================================================================
-   🚨 OVERRIDE SYSTEM OVERLAPS - GLASS WALL LAYOUT CORRECTION
-   ========================================================================== */
-
-/* This rule forces un-authenticated components to completely vanish, removing them from the page track layout */
-.hidden { 
-    display: none !important; 
-    visibility: hidden !important;
-    pointer-events: none !important;
-    z-index: -9999 !important;
-}
-
-successModal.style.display = "flex";

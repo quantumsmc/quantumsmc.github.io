@@ -4,24 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum SMC Engine | Volatility-Filtered Market Structure Automation</title>
+    <!-- Standalone system links -->
     <link rel="stylesheet" href="styles.css">
-    
-    <!-- 🚀 FORCE FIREBASE FRAMEWORKS ON SCREEN FIRST -->
-    <script src="https://gstatic.com"></script>
-    <script src="https://gstatic.com"></script>
-    
-    <!-- LOAD LOGIC HANDLERS LATER -->
-    <script src="auth-handler.js" defer></script>
     <script src="script.js" defer></script>
 </head>
-
-
-
 <body>
 
     <header>
         <div class="logo">QUANTUM.SMC</div>
-        <a href="https://t.me/aahil_exchange" target="_blank" class="tg-contact">✈️ Institutional Access Desk</a>
+        <a href="https://t.me/aahil_exchange", '_blank');
+            });" target="_blank" class="tg-contact">✈️ Institutional Access Desk</a>
     </header>
 
     <section class="hero">
@@ -69,90 +61,56 @@
             
             <div class="tg-notice-box">
                 💬 Corporate Inquiry or Direct Procurement Assistance? <br>
-                <a href="https://t.me" target="_blank" class="tg-inline-link">Connect to Operations @aahil_exchange</a>
+                <a href="https://t.me/aahil_exchange", '_blank');
+            });" target="_blank" class="tg-inline-link">Connect to Operations @aahil_exchange</a>
             </div>
 
-            <!-- FIREBASE AUTHENTICATION INTERFACE MODULE -->
-            <div id="authGate" class="auth-gate-box" style="position: relative;">
-                
-                <!-- 🔄 Loading Spinner Overlay -->
-                <div id="authLoadingOverlay" class="auth-loading-overlay hidden">
-                    <div class="spinner"></div>
-                    <p style="color: var(--cyan); margin-top: 15px; font-weight: bold; letter-spacing: 1px;">VALIDATING CREDENTIALS...</p>
+            <p class="form-step">Step 1: Remit $4,999 USDT to one of our verified clearing addresses (Click row to copy address):</p>
+            
+            <!-- TRC20 INTERACTION ROW WITH DRAWER CONTROL -->
+            <div class="address-card-container">
+                <div class="copy-wallet-row" id="copyTrcRow" title="Click to copy TRC20 Address">
+                    <span class="wallet-text-span">📥 Network: TRC20 | <strong id="trcAddrText">TTNj6h9sLrbtoFMYhmNpzaGGL5inqpuoSF</strong></span>
+                    <button class="action-mini-btn copy-indicator-badge">📋 Copy</button>
                 </div>
-
-                <h3>🔒 Security Access Authorization Required</h3>
-                <p class="auth-gate-desc">You must sign into an operational engine identity before submitting infrastructure clearing hashes.</p>
-                
-                <div class="auth-input-group">
-                    <input type="email" id="authEmail" placeholder="Operational Email Address">
-                    <input type="password" id="authPassword" placeholder="Security Password">
-                </div>
-                
-                <div class="auth-action-row">
-                    <button id="btnEmailLogin" class="btn" style="background: var(--purple); border: none;">Authorized Login</button>
-                    <button id="btnEmailSignUp" class="btn" style="background: transparent; border: 1px solid #1e293b; color: #94a3b8;">Provision Account</button>
-                </div>
-                <div class="auth-divider" style="margin: 15px 0; color: #475569; font-size: 0.85rem; text-align: center;">OR SECURE SIGN-IN WITH PROVIDERS</div>
-                <div style="text-align: center;">
-                    <button id="btnGoogleLogin" class="btn" style="background: #4285F4; border: none; width: 100%;">🌐 Sign in with Google Account</button>
+                <button class="qr-toggle-trigger" id="toggleTrcQrBtn">🖼️ View TRC20 QR Code</button>
+                <div class="qr-display-frame" id="trcQrWrapper">
+                    <img src="qr_trc20.png" alt="USDT TRC20 Payment QR Code" class="qr-asset-img">
                 </div>
             </div>
 
-            <!-- LOGGED-IN SESSION STATUS HEADER -->
-            <div id="userStatusBanner" class="user-status-banner hidden">
-                <div>🟩 Session Security Verified: <strong id="activeUserEmail"></strong></div>
-                <button id="btnSystemLogout" class="logout-link">Terminate Session [Logout]</button>
+            <!-- BEP20 INTERACTION ROW WITH DRAWER CONTROL -->
+            <div class="address-card-container" style="margin-top: 15px;">
+                <div class="copy-wallet-row bep20-row" id="copyBepRow" title="Click to copy BEP20 Address">
+                    <span class="wallet-text-span" style="color: var(--gold);">📥 Network: BEP20 | <strong id="bepAddrText">0x0103e76054294b5f838a87cd266891cb13d6fd28</strong></span>
+                    <button class="action-mini-btn copy-indicator-badge" style="background: var(--gold); color: #000;">📋 Copy</button>
+                </div>
+                <button class="qr-toggle-trigger" id="toggleBepQrBtn" style="border-color: var(--gold); color: var(--gold);">🖼️ View BEP20 QR Code</button>
+                <div class="qr-display-frame" id="bepQrWrapper">
+                    <img src="qr_bep20.png" alt="USDT BEP20 Payment QR Code" class="qr-asset-img">
+                </div>
             </div>
 
-            <!-- GATED CONTENT WRAPPER -->
-            <div id="gatedFormContent" class="hidden">
-                <p class="form-step">Step 1: Remit $4,999 USDT to one of our verified clearing addresses (Click row to copy address):</p>
+            <p class="form-step" style="margin-top:35px;">Step 2: Submit your node data configuration variables:</p>
+
+            <form id="secureForm">
+                <div class="form-group"><label>License Holder Name</label><input type="text" id="name" required placeholder="John Doe"></div>
+                <div class="form-group"><label>Delivery Email Address</label><input type="email" id="email" required placeholder="institution@domain.com"></div>
+                <div class="form-group"><label>Target Software Core</label><select id="platform"><option>TradingView (Pine Script v6)</option><option>MetaTrader 5 (.ex5 System Engine)</option></select></div>
+                <div class="form-group"><label>Clearing Network Used</label><select id="network"><option value="TRC20">USDT - TRC20 Protocol</option><option value="BEP20">USDT - BEP20 Protocol</option></select></div>
+                <div class="form-group"><label>TradingView Handlers ID</label><input type="text" id="username" placeholder="Optional"></div>
+                <div class="form-group"><label>Cryptographic Transaction Hash (TxID)</label><input type="text" id="txid" required placeholder="Paste verified block execution hash string"></div>
                 
-                <!-- TRC20 -->
-                <div class="address-card-container">
-                    <div class="copy-wallet-row" id="copyTrcRow" title="Click to copy TRC20 Address">
-                        <span class="wallet-text-span">📥 Network: TRC20 | <strong id="trcAddrText">TTNj6h9sLrbtoFMYhmNpzaGGL5inqpuoSF</strong></span>
-                        <button class="action-mini-btn copy-indicator-badge">📋 Copy</button>
-                    </div>
-                    <button class="qr-toggle-trigger" id="toggleTrcQrBtn">🖼️ View TRC20 QR Code</button>
-                    <div class="qr-display-frame" id="trcQrWrapper">
-                        <img src="qr_trc20.png" alt="USDT TRC20 Payment QR Code" class="qr-asset-img">
-                    </div>
-                </div>
-
-                <!-- BEP20 -->
-                <div class="address-card-container" style="margin-top: 15px;">
-                    <div class="copy-wallet-row bep20-row" id="copyBepRow" title="Click to copy BEP20 Address">
-                        <span class="wallet-text-span" style="color: var(--gold);">📥 Network: BEP20 | <strong id="bepAddrText">0x0103e76054294b5f838a87cd266891cb13d6fd28</strong></span>
-                        <button class="action-mini-btn copy-indicator-badge" style="background: var(--gold); color: #000;">📋 Copy</button>
-                    </div>
-                    <button class="qr-toggle-trigger" id="toggleBepQrBtn" style="border-color: var(--gold); color: var(--gold);">🖼️ View BEP20 QR Code</button>
-                    <div class="qr-display-frame" id="bepQrWrapper">
-                        <img src="qr_bep20.png" alt="USDT BEP20 Payment QR Code" class="qr-asset-img">
-                    </div>
-                </div>
-
-                <p class="form-step" style="margin-top:35px;">Step 2: Submit your node data configuration variables:</p>
-
-                <!-- FIXED: Fully closed the dropdown elements and added missing form controls -->
-                <form id="secureForm">
-                    <div class="form-group"><label>License Holder Name</label><input type="text" id="name" required placeholder="John Doe"></div>
-                    <div class="form-group"><label>Delivery Email Address</label><input type="email" id="email" required placeholder="institution@domain.com"></div>
-                    <div class="form-group"><label>Target Software Core</label><select id="platform"><option>TradingView (Pine Script v6)</option><option>MetaTrader 5 (.ex5 System Engine)</option></select></div>
-                    <div class="form-group"><label>Clearing Network Used</label><select id="network"><option value="TRC20">USDT - TRC20 Protocol</option><option value="BEP20">USDT - BEP20 Protocol</option></select></div>
-                    <div class="form-group"><label>TradingView Handlers ID</label><input type="text" id="username" placeholder="Optional"></div>
-                    <div class="form-group"><label>Cryptographic Transaction Hash (TxID)</label><input type="text" id="txid" required placeholder="Paste verified block execution hash string"></div>
-                    
-                    <button type="submit" class="submit-btn">Compile License Request</button>
-                </form>
-            </div>
+                <button type="submit" class="submit-btn">Compile License Request</button>
+            </form>
         </div>
 
         <div class="promo-banner">
             <div class="promo-badge">Bonus</div>
             <div class="promo-title">💎 Early Adoption Infrastructure Allocation 💎</div>
-            <p class="promo-text">To celebrate our milestone deployment, the <span class="promo-highlight">first 30 registered users</span> will be automatically enrolled to receive complimentary premium hardware updates upon system authorization verification check.</p>
+            <p class="promo-text">
+                To celebrate our milestone deployment, the <span class="promo-highlight">first 30 registered users</span> will be automatically enrolled to receive complimentary premium hardware updates upon system authorization verification check.
+            </p>
             <div class="prize-list-grid">
                 <div class="prize-item-box" style="border-color: var(--purple);">
                     <div class="img-wrapper"><img src="iphone18.png" alt="Hardware Display Unit" class="prize-img"></div>
@@ -168,7 +126,7 @@
         </div>
     </div>
 
-    <!-- 🌌 ZOOM IMAGE PREVIEW VIEWER MODAL LAYOUT -->
+    <!-- 🌌 SAME-PAGE IMAGE VIEWER MODAL OVERLAY -->
     <div class="modal-overlay" id="imageViewerModal">
         <div class="image-modal-content">
             <button class="close-image-modal" id="closeImgBtn">&times;</button>
@@ -176,18 +134,26 @@
         </div>
     </div>
 
-    <!-- 📄 SAME-PAGE SUBMISSION VERIFICATION PANEL MODAL OVERLAY -->
+    <!-- 📄 SAME-PAGE SUBMISSION SUCCESS MODAL OVERLAY (WITH DUAL CHOICE SELECTION GRID) -->
     <div class="modal-overlay" id="successModal">
         <div class="image-modal-content" style="max-width: 550px; padding: 25px; text-align: left; border-color: var(--purple);">
             <button class="close-image-modal" id="closeSecBtn" style="color: var(--purple);">&times;</button>
-            <h3 style="margin-top: 0; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 12px;">🚀 System compilation Successful</h3>
+            <h3 style="margin-top: 0; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 12px;">🚀 System Compilation Successful</h3>
             <p style="font-size: 13px; color: #94a3b8; line-height: 1.4; margin-bottom: 20px;">Your cryptographic clearing parameters have been verified. Copy the formatted record string payload below to verify synchronization protocols with your operator window.</p>
             <pre id="modalDataText" style="background: #06090f; border: 1px solid var(--border); padding: 15px; border-radius: 6px; color: var(--cyan); font-family: monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; margin: 15px 0; overflow-x: auto;"></pre>
-            <button id="copyBtn" class="btn" style="background: var(--purple); margin-top: 15px; border: none;">📋 Copy Encoded Record Payload</button>
+            
+            <!-- Side-by-side selection grid layout buttons integrated cleanly right here -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                <button id="sendTgBtn" class="btn" style="background: #229ED9; border: none; font-size: 13px; padding: 12px 5px;">
+                    ✈️ Dispatch via Telegram
+                </button>
+                <button id="sendEmailBtn" class="btn" style="background: var(--purple); border: none; font-size: 13px; padding: 12px 5px;">
+                    ✉️ Dispatch via Email
+                </button>
+            </div>
+            
         </div>
     </div>
 
-    <!-- FIXED: Links to non-module auth script layout configuration to fully support standard GitHub servers -->
-   
 </body>
 </html>

@@ -1,9 +1,9 @@
 // ==========================================================================
-// 📊 PART 1: CORE INTERACTION ENGINE - CLIPBOARD UTILITIES & VIEW TOGGLES
+// 📊 QUANTUM SMC CENTRAL ENGINE - REPAIRED DISPATCH LOGIC (NO ALERTS)
 // ==========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    // --- Master Element Selectors Matrix
+    //--- Master Element Selectors Matrix
     const secureForm = document.getElementById("secureForm");
     const tvWrapper = document.getElementById("tvWrapper");
     const mt5Wrapper = document.getElementById("mt5Wrapper");
@@ -13,12 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalDataText = document.getElementById("modalDataText");
     const closeImgBtn = document.getElementById("closeImgBtn");
     const closeSecBtn = document.getElementById("closeSecBtn");
-    const copyBtn = document.getElementById("copyBtn");
 
-    // 🚀 CRITICAL FIX: Explicitly hide the popup modals as soon as the page loads
-    if (successModal) successModal.style.display = "none";
-    if (imageViewerModal) imageViewerModal.style.display = "none";
-
+    // NEW TARGET CHANNELS SELECTORS MATCHING THE CHOICE BUTTONS
+    const sendTgBtn = document.getElementById("sendTgBtn");
+    const sendEmailBtn = document.getElementById("sendEmailBtn");
 
     //--- QR Code Selection Subsystems Nodes
     const copyTrcRow = document.getElementById("copyTrcRow");
@@ -28,22 +26,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const trcQrWrapper = document.getElementById("trcQrWrapper");
     const bepQrWrapper = document.getElementById("bepQrWrapper");
 
+    // Clear background structures cleanly on asset reload execution loops
+    if (successModal) successModal.style.display = "none";
+    if (imageViewerModal) imageViewerModal.style.display = "none";
+
     //--- 📋 Click Rows Instant Clipboard Actions Engine
     if (copyTrcRow) {
         copyTrcRow.addEventListener("click", () => {
             const trcAddress = document.getElementById("trcAddrText").innerText;
-            navigator.clipboard.writeText(trcAddress).then(() => {
-                alert("📋 TRC20 Wallet Address successfully copied to clipboard!");
-            });
+            navigator.clipboard.writeText(trcAddress);
         });
     }
 
     if (copyBepRow) {
         copyBepRow.addEventListener("click", () => {
             const bepAddress = document.getElementById("bepAddrText").innerText;
-            navigator.clipboard.writeText(bepAddress).then(() => {
-                alert("📋 BEP20 Wallet Address successfully copied to clipboard!");
-            });
+            navigator.clipboard.writeText(bepAddress);
         });
     }
 
@@ -71,9 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-// ==========================================================================
-// 📊 PART 2: UI VIEWPORT LIGHTBOX MODALS & SECURE PAYLOAD COMPILATION
-// ==========================================================================
 
     //--- 📊 Same-Page Chart & QR Lightbox Modals Zoom Engine
     if (tvWrapper) {
@@ -90,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Event Trigger Hooks to intercept clicks on QR code elements
     if (trcQrWrapper) {
         trcQrWrapper.addEventListener("click", () => {
             popupModalImage.src = "qr_trc20.png";
@@ -111,11 +105,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    imageViewerModal.addEventListener("click", (e) => {
-        if (e.target === imageViewerModal) {
-            imageViewerModal.style.display = "none";
-        }
-    });
+    if (imageViewerModal) {
+        imageViewerModal.addEventListener("click", (e) => {
+            if (e.target === imageViewerModal) {
+                imageViewerModal.style.display = "none";
+            }
+        });
+    }
 
     //--- 📝 Registration Verification Form Data Processors
     if (secureForm) {
@@ -139,14 +135,9 @@ document.addEventListener("DOMContentLoaded", () => {
             visiblePayload += `Cryptographic Transaction ID: ${txid}\n`;
             visiblePayload += `Chronological Indexing Priority Log: Confirmed`;
             
-            // Check for modal element existence to safeguard compilation
             if (modalDataText && successModal) {
                 modalDataText.innerText = visiblePayload;
                 successModal.style.display = "flex";
-            } else {
-                // Failback trace log if successModal nodes are missing inside your HTML layout
-                console.log("Compiled System Payload:\n", visiblePayload);
-                alert("🚀 Request Form Compiled! Operational team notifying loop ongoing.");
             }
         });
     }
@@ -173,15 +164,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    if (copyBtn) {
-        copyBtn.addEventListener("click", () => {
+    // 🚀 DUAL LISTENERS - SILENT DISPATCH ARCHITECTURE (ALERTS REMOVED)
+    if (sendTgBtn) {
+        sendTgBtn.addEventListener("click", () => {
             const rawPayload = modalDataText.innerText;
             navigator.clipboard.writeText(rawPayload).then(() => {
-                alert("📋 Secure registration payload data copied to clipboard!");
+                // Instantly opens Telegram window without throwing any grey alert popups
+                window.open("https://t.me/aahil_exchange", '_blank');
+            });
+        });
+    }
+
+    if (sendEmailBtn) {
+        sendEmailBtn.addEventListener("click", () => {
+            const rawPayload = modalDataText.innerText;
+            navigator.clipboard.writeText(rawPayload).then(() => {
+                // Instantly launches local mail application field components silently
+                const emailTarget = "realtimecooder@gmail.com";
+                const emailSubject = encodeURIComponent("Quantum SMC License Deployment Verification Hash");
+                const emailBody = encodeURIComponent(rawPayload);
+                
+                window.open(`mailto:${emailTarget}?subject=${emailSubject}&body=${emailBody}`, '_blank');
             });
         });
     }
 });
-
-successModal.style.display = "flex";
-
