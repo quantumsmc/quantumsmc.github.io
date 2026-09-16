@@ -1,5 +1,5 @@
 // ==========================================================================
-// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - BULLETPROOF DIRECT
+// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE - ISOLATED LAYER FIX
 // ==========================================================================
 
 (function() {
@@ -13,27 +13,19 @@
         measurementId: "G-21DBPK6ZCH"
     };
 
-    function startAuthEngine() {
-        if (typeof firebase === 'undefined') {
-            return setTimeout(startAuthEngine, 50);
-        }
-
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-
+    function startEngine() {
+        if (typeof firebase === 'undefined') return setTimeout(startEngine, 30);
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        
         const auth = firebase.auth();
         const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-        // Match elements securely
         const emailInput = document.getElementById('authEmail');
         const passwordInput = document.getElementById('authPassword');
-        
-        // Target assignments
-        const btnLogin = document.getElementById('btnEmailLogin') || document.getElementById('btnLogin');
-        const btnSignUp = document.getElementById('btnEmailSignUp') || document.getElementById('btnSignUp');
-        const btnGoogle = document.getElementById('btnGoogleLogin') || document.getElementById('btnGoogle'); 
-        const btnLogout = document.getElementById('btnSystemLogout') || document.getElementById('btnLogout');
+        const btnLogin = document.getElementById('btnEmailLogin');
+        const btnSignUp = document.getElementById('btnEmailSignUp');
+        const btnGoogle = document.getElementById('btnGoogleLogin'); 
+        const btnLogout = document.getElementById('btnSystemLogout');
 
         const authGate = document.getElementById('authGate');
         const gatedFormContent = document.getElementById('gatedFormContent');
@@ -61,29 +53,22 @@
             }
         });
 
-        // Use direct inline override properties to stop file clashing
         if (btnSignUp) {
             btnSignUp.onclick = function(e) {
                 e.preventDefault();
-                const email = emailInput.value.trim();
-                const password = passwordInput.value.trim();
-                if (!email || !password) return alert("Please fill out both the email and password fields.");
                 startLoading();
-                auth.createUserWithEmailAndPassword(email, password)
-                    .then(() => alert("Access profile created successfully! Checkout forms unlocked."))
-                    .catch((err) => { stopLoading(); alert("Registration Error: " + err.message); });
+                auth.createUserWithEmailAndPassword(emailInput.value.trim(), passwordInput.value.trim())
+                    .then(() => alert("Access Profile Provisioned! Welcome."))
+                    .catch((err) => { stopLoading(); alert("Error: " + err.message); });
             };
         }
 
         if (btnLogin) {
             btnLogin.onclick = function(e) {
                 e.preventDefault();
-                const email = emailInput.value.trim();
-                const password = passwordInput.value.trim();
-                if (!email || !password) return alert("Fields cannot remain empty.");
                 startLoading();
-                auth.signInWithEmailAndPassword(email, password)
-                    .catch((err) => { stopLoading(); alert("Authorization Rejected: " + err.message); });
+                auth.signInWithEmailAndPassword(emailInput.value.trim(), passwordInput.value.trim())
+                    .catch((err) => { stopLoading(); alert("Error: " + err.message); });
             };
         }
 
@@ -92,8 +77,7 @@
                 e.preventDefault();
                 startLoading();
                 auth.signInWithPopup(googleProvider)
-                    .then((result) => { console.log("OAuth Success:", result.user.email); })
-                    .catch((err) => { stopLoading(); alert("Handshake Error: " + err.message); });
+                    .catch((err) => { stopLoading(); alert("Handshake Interrupted: " + err.message); });
             };
         }
 
@@ -101,15 +85,10 @@
             btnLogout.onclick = function(e) {
                 e.preventDefault();
                 startLoading();
-                auth.signOut().catch((err) => { stopLoading(); alert("Logout Error: " + err.message); });
+                auth.signOut().catch((err) => { stopLoading(); alert("Error: " + err.message); });
             };
         }
     }
 
-    // Execute immediately to override structural layout blocks
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", startAuthEngine);
-    } else {
-        startAuthEngine();
-    }
+    startEngine();
 })();
