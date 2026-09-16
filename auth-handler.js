@@ -1,9 +1,9 @@
 // ==========================================================================
-// ⚙️ STANDALONE PRODUCTION UTILITIES (NO SERVER REQUIRED)
+// ⚙️ GITHUB PAGES SERVER COMPATIBILITY LOGIC ENGINE
 // ==========================================================================
 
-// Dynamically load Firebase App and Auth via traditional scripts to bypass CORS
-function loadScript(url) {
+// Helper functions to safely append global production libraries
+function loadFirebaseScript(url) {
     return new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = url;
@@ -13,15 +13,16 @@ function loadScript(url) {
     });
 }
 
-// Sequence the installation of Firebase libraries over local file configurations
+// Chain asynchronous asset streams directly inside the browser environment
 Promise.all([
-    loadScript("https://gstatic.com"),
-    loadScript("https://gstatic.com")
+    loadFirebaseScript("https://gstatic.com"),
+    loadFirebaseScript("https://gstatic.com")
 ]).then(() => {
-    // initialize using compat structures
+    
+    // YOUR VERIFIED SECURE LIVE PRODUCTION KEY COMPILATION CONSOLE MATRIX
     const firebaseConfig = {
         apiKey: "AIzaSyCRTta-0pkDxip31yXtlwH_FJIi2Ze3hRw",
-        authDomain: "://firebaseapp.com",
+        authDomain: "quantumsmc01.firebaseapp.com",
         projectId: "quantumsmc01",
         storageBucket: "quantumsmc01.firebasestorage.app",
         messagingSenderId: "417085121991",
@@ -29,11 +30,12 @@ Promise.all([
         measurementId: "G-21DBPK6ZCH"
     };
 
+    // Initialize global compat engine layers
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-    // Element target assignments
+    // DOM Target Assignments Matrix
     const emailInput = document.getElementById('authEmail');
     const passwordInput = document.getElementById('authPassword');
     const btnLogin = document.getElementById('btnEmailLogin');
@@ -51,70 +53,79 @@ Promise.all([
     function startLoading() { if (loadingOverlay) loadingOverlay.classList.remove('hidden'); }
     function stopLoading() { if (loadingOverlay) loadingOverlay.classList.add('hidden'); }
 
-    // State Machine Monitor Loop
+    // Persistent State Change Tracking Thread Loop
     auth.onAuthStateChanged((user) => {
         stopLoading(); 
         if (user) {
-            authGate.classList.add('hidden');
-            userStatusBanner.classList.remove('hidden');
-            gatedFormContent.classList.remove('hidden');
-            activeUserEmail.innerText = user.email;
+            if (authGate) authGate.classList.add('hidden');
+            if (userStatusBanner) userStatusBanner.classList.remove('hidden');
+            if (gatedFormContent) gatedFormContent.classList.remove('hidden');
+            if (activeUserEmail) activeUserEmail.innerText = user.email;
             if (registrationEmailField) registrationEmailField.value = user.email;
         } else {
-            authGate.classList.remove('hidden');
-            userStatusBanner.classList.add('hidden');
-            gatedFormContent.classList.add('hidden');
-            activeUserEmail.innerText = "";
+            if (authGate) authGate.classList.remove('hidden');
+            if (userStatusBanner) userStatusBanner.classList.add('hidden');
+            if (gatedFormContent) gatedFormContent.classList.add('hidden');
+            if (activeUserEmail) activeUserEmail.innerText = "";
         }
     });
 
-    // Account registration submission
-    btnSignUp.addEventListener('click', () => {
-        const email = emailInput.value;
-        const password = passwordInput.value;
-        if (!email || !password) return alert("Please fill out email and password parameters.");
-        
-        startLoading();
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(() => alert("Access profile created! Infrastructure forms unlocked."))
-            .catch((err) => {
-                stopLoading();
-                alert("Registration Error: " + err.message);
-            });
-    });
-
-    // Email login authentication loop
-    btnLogin.addEventListener('click', () => {
-        const email = emailInput.value;
-        const password = passwordInput.value;
-        if (!email || !password) return alert("Credentials fields cannot remain blank.");
-
-        startLoading();
-        auth.signInWithEmailAndPassword(email, password)
-            .catch((err) => {
-                stopLoading();
-                alert("Authorization Rejected: " + err.message);
-            });
-    });
-
-    // Google OAuth integration hook
-    btnGoogle.addEventListener('click', () => {
-        startLoading();
-        auth.signInWithPopup(googleProvider)
-            .catch((err) => {
-                stopLoading();
-                alert("Handshake Cancelled or Failed: " + err.message);
-            });
-    });
-
-    // Sign out session execution
-    btnLogout.addEventListener('click', () => {
-        startLoading();
-        auth.signOut().catch((err) => {
-            stopLoading();
-            alert("Termination fault: " + err.message);
+    // Custom Profile Credentials Verification Submit Trigger
+    if (btnSignUp) {
+        btnSignUp.addEventListener('click', () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            if (!email || !password) return alert("Please fill out both the email and password fields.");
+            
+            startLoading();
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(() => alert("Access profile created successfully! The checkout gates are unlocked."))
+                .catch((err) => {
+                    stopLoading();
+                    alert("Registration Error: " + err.message);
+                });
         });
-    });
+    }
+
+    // Standard Sign In Form Array Core Interception
+    if (btnLogin) {
+        btnLogin.addEventListener('click', () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            if (!email || !password) return alert("Fields cannot remain empty.");
+
+            startLoading();
+            auth.signInWithEmailAndPassword(email, password)
+                .catch((err) => {
+                    stopLoading();
+                    alert("Authorization Rejected: " + err.message);
+                });
+        });
+    }
+
+    // Google Secure OAuth Popup Layer Handshake Hook
+    if (btnGoogle) {
+        btnGoogle.addEventListener('click', () => {
+            startLoading();
+            auth.signInWithPopup(googleProvider)
+                .catch((err) => {
+                    stopLoading();
+                    alert("Handshake Cancelled or Failed: " + err.message);
+                });
+        });
+    }
+
+    // Active Global Session Termination Sequence Control
+    if (btnLogout) {
+        btnLogout.addEventListener('click', () => {
+            startLoading();
+            auth.signOut().catch((err) => {
+                stopLoading();
+                alert("Termination fault: " + err.message);
+            });
+        });
+    }
+
 }).catch(err => {
-    console.error("Failed to load global Firebase libraries:", err);
+    console.error("Critical System Interruption loading assets:", err);
 });
