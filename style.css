@@ -1,0 +1,438 @@
+:root {
+    --bg-color: #050811;
+    --card-bg: #0b111e;
+    --accent-color: #3b82f6;
+    --text-color: #94a3b8;
+    --text-bright: #ffffff;
+    --border-color: #1e293b;
+    --warning-color: #ea580c;
+    --bullish-green: #10b981;
+    --bearish-red: #ef4444;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 40px 20px;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+header h1 {
+    color: var(--text-bright);
+    margin: 0 0 10px 0;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.description {
+    font-size: 1rem;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+    color: #cbd5e1;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    color: var(--text-bright);
+    margin: 40px 0 20px 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card h3 {
+    color: var(--text-bright);
+    margin-top: 0;
+    font-size: 1.35rem;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.features {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 35px 0;
+}
+
+.features li {
+    margin-bottom: 12px;
+    padding-left: 24px;
+    position: relative;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+}
+
+.features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.features li.highlight-feature {
+    color: #f8fafc;
+    font-weight: 600;
+}
+.features li.highlight-feature::before {
+    color: var(--bullish-green);
+}
+
+.price {
+    font-size: 2rem;
+    color: var(--text-bright);
+    font-weight: 700;
+    margin: 0;
+}
+
+.price span {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #64748b;
+    margin-left: 4px;
+}
+
+/* Custom Coder Request Banner Styles */
+.custom-request-banner {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(30, 41, 59, 0.4) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 12px;
+    padding: 24px 30px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.banner-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.banner-body h3 {
+    margin: 0 0 8px 0;
+    color: var(--text-bright);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.banner-body p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+/* Two Picture Showcase Layout Core */
+.chart-display-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.chart-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.chart-card-header {
+    color: #38bdf8;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.chart-img-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Interactive Image Zoom Hover System */
+.zoomable {
+    cursor: pointer;
+}
+
+.zoom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 8, 17, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    backdrop-filter: blur(2px);
+}
+
+.zoomable:hover .zoom-overlay {
+    opacity: 1;
+}
+
+.zoomable:hover .chart-img {
+    transform: scale(1.02);
+}
+
+/* Fullscreen Zoom Lightbox Interface Mechanics */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 8, 17, 0.95);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    max-width: 95%;
+    max-height: 85vh;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-content {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #94a3b8;
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.2s;
+    user-select: none;
+}
+
+.lightbox-close:hover {
+    color: #ffffff;
+}
+
+/* Help Desk Contact styling rules */
+.contact-section {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.contact-title {
+    color: var(--text-bright);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.contact-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contact-item {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #141c2c;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.contact-item:hover {
+    border-color: var(--accent-color);
+    background: #17243a;
+    color: var(--text-bright);
+}
+
+/* Regulatory Trading Disclaimer Section */
+.disclaimer-box {
+    border: 1px solid #c2410c;
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 30px;
+    background-color: rgba(194, 65, 12, 0.03);
+    margin-bottom: 60px;
+}
+
+.disclaimer-box h4 {
+    color: #fdba74;
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.disclaimer-box p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.7;
+}
+
+/* Telegram Action Bar Trigger element styles */
+.tg-chat-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(34, 158, 217, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 9999;
+}
+
+.tg-chat-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(34, 158, 217, 0.4);
+}
+
+.tg-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* Viewport breakpoint responsive layouts rules */
+@media (max-width: 600px) {
+    .custom-request-banner {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px;
+    }
+    .tg-chat-btn {
+        width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+        justify-content: center;
+        bottom: 20px;
+    }
+    .disclaimer-box {
+        margin-bottom: 90px;
+    }
+    .contact-links {
+        flex-direction: column;
+        width: 100%;
+    }
+    .contact-item {
+        width: 100%;
+        justify-content: center;
+    }
+    .lightbox-close {
+        top: 20px;
+        right: 20px;
+    }
+}
